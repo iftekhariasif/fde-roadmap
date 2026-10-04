@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Md. Sayeed Rahman</title>
+  <meta name="description" content="Md. Sayeed Rahman, backend engineer and software developer.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap bar">
+      <a class="brand" href="#top" aria-label="Home">SR</a>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Backend Engineer · Software Developer</p>
+      <h1>Md. Sayeed Rahman</h1>
+      <p class="lede">I build reliable software systems and practical applications that solve real-world problems.</p>
+      <ul class="tags" aria-label="Focus areas">
+        <li>Go</li>
+        <li>.NET</li>
+        <li>Distributed systems</li>
+        <li>System design</li>
+        <li>Agentic Engineering</li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn-primary" href="#work">See the work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+      <dl class="stats">
+        <div><dt>5+</dt><dd>Years in production systems</dd></div>
+        <div><dt>1,000+</dt><dd>Coding problems solved</dd></div>
+      </dl>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>Backend engineer with 5+ years of experience contributing to mission-critical, complex production systems. I care about clean architecture, system design, developer tools, and reliable architecture, and I also know my way around frontend, mobile, and DevOps.</p>
+      <p>I build privacy-focused applications with a focus on user ownership of data. I keep learning, use AI tools to move faster, and share what I learn. I have solved 1,000+ coding problems and taken part in contests on online judges.</p>
+    </section>
+
+    <section id="work">
+      <h2>Work</h2>
+      <a class="card project" href="https://play.google.com/store/apps/details?id=com.amarhishab.amar_hishab" target="_blank" rel="noopener noreferrer">
+        <div>
+          <h3>Amar Hishab</h3>
+          <p>Privacy-focused personal finance app. Your records stay on your device.</p>
+        </div>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="sub-link" href="apps/amar-hishab/privacy.html">Amar Hishab privacy policy</a>
+      <a class="card project" href="https://www.youtube.com/@md.sayeedrahman2553" target="_blank" rel="noopener noreferrer">
+        <div>
+          <h3>YouTube</h3>
+          <p>My channel, where I create tech content.</p>
+        </div>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>For collaboration, software engineering discussions, or product ideas, feel free to connect with me.</p>
+      <ul class="links">
+        <li><a class="card" href="https://www.linkedin.com/in/mdsayeedrahman1999/" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a class="card" href="https://github.com/sayeed1999" target="_blank" rel="noopener noreferrer"><span>GitHub</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a class="card" href="tel:+8801614426353"><span>+8801614426353</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li class="email">
+          <a class="card" href="mailto:mdsayeedrahman1999@gmail.com"><span>Send an email</span></a>
+          <button class="copy-btn" type="button" data-copy="mdsayeedrahman1999@gmail.com">Copy</button>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Md. Sayeed Rahman</span>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Copy email
+    document.querySelector(".copy-btn").addEventListener("click", function (e) {
+      var b = e.currentTarget;
+      navigator.clipboard.writeText(b.dataset.copy).then(function () {
+        b.textContent = "Copied";
+        setTimeout(function () { b.textContent = "Copy"; }, 1500);
+      });
+    });
+
+    // Highlight the nav link for the section in view
+    var links = {};
+    document.querySelectorAll("nav a").forEach(function (a) { links[a.hash.slice(1)] = a; });
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        Object.keys(links).forEach(function (id) {
+          links[id].classList.toggle("active", id === en.target.id);
+        });
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    Object.keys(links).forEach(function (id) { spy.observe(document.getElementById(id)); });
+  </script>
+</body>
+</html>
