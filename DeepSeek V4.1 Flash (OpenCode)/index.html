@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Forward Deployed Engineers who embed with your team to ship production AI and software in weeks, not quarters." />
+  <title>Deploy — Forward Deployed Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Deploy</span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden />
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </label>
+
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a class="nav-cta" href="#contact">Book a call</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-copy">
+        <p class="eyebrow">Forward Deployed Engineering</p>
+        <h1>Ship production software with a team that embeds in <em>your</em> codebase.</h1>
+        <p class="lede">
+          Deploy sends senior engineers on-site with your product team to turn ambiguous
+          problems into working systems — fast, secure, and built to last.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Book a discovery call</a>
+          <a class="btn btn-ghost" href="#services">See what we do</a>
+        </div>
+        <ul class="hero-stats">
+          <li><strong>4 wks</strong><span>to first release</span></li>
+          <li><strong>120+</strong><span>deployments shipped</span></li>
+          <li><strong>98%</strong><span>retained accounts</span></li>
+        </ul>
+      </div>
+
+      <div class="hero-panel" aria-hidden="true">
+        <div class="panel-bar"><span></span><span></span><span></span></div>
+        <pre class="panel-code"><code><span class="tok-key">deploy</span> <span class="tok-fn">embed</span> <span class="tok-str">--team</span> acme \
+  <span class="tok-str">--focus</span> ai-platform \
+  <span class="tok-str">--duration</span> <span class="tok-num">90d</span>
+
+<span class="tok-comment"># week 1  discovery + architecture</span>
+<span class="tok-comment"># week 3  first production slice</span>
+<span class="tok-comment"># week 6  scale + handover</span>
+<span class="tok-ok">✔ shipped to prod</span></code></pre>
+      </div>
+    </section>
+
+    <section class="logos container" aria-label="Trusted by">
+      <p class="logos-label">Trusted by teams building at scale</p>
+      <div class="logo-row">
+        <span>Northwind</span>
+        <span>Helios AI</span>
+        <span>Meridian</span>
+        <span>Kettle</span>
+        <span>Volt&nbsp;Labs</span>
+      </div>
+    </section>
+
+    <section id="services" class="section container">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2>One embedded team, every layer of the stack</h2>
+        <p class="section-sub">
+          We plug directly into your sprints, standups, and repos — no hand-offs, no
+          slide decks, just working software.
+        </p>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">◎</div>
+          <h3>AI &amp; ML platforms</h3>
+          <p>RAG pipelines, evaluation harnesses, and inference infrastructure that actually reach production.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">⬡</div>
+          <h3>Product engineering</h3>
+          <p>Full-stack features shipped into your existing app, matching your conventions and CI.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">◈</div>
+          <h3>Data &amp; integrations</h3>
+          <p>Connect the systems your business actually runs on — ERPs, warehouses, and internal APIs.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">▣</div>
+          <h3>Cloud &amp; reliability</h3>
+          <p>Infra-as-code, observability, and cost controls that keep you shipping under load.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">◐</div>
+          <h3>Security &amp; compliance</h3>
+          <p>SOC 2 and HIPAA-ready patterns baked in from the first commit, not bolted on later.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">✦</div>
+          <h3>Enablement</h3>
+          <p>Pairing, runbooks, and handover so your team owns everything when we leave.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="process" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Process</p>
+          <h2>From kickoff to handover in four moves</h2>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num">01</span>
+            <h3>Embed</h3>
+            <p>We join your tools, meet your team, and map the problem space in the first week.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">02</span>
+            <h3>Build</h3>
+            <p>A thin vertical slice ships to production fast, then we iterate with real feedback.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">03</span>
+            <h3>Harden</h3>
+            <p>Tests, observability, and security turn the prototype into something durable.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">04</span>
+            <h3>Hand over</h3>
+            <p>Docs, pairing sessions, and a clean exit — your team runs it from day one.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="results" class="section container">
+      <div class="section-head">
+        <p class="eyebrow">Results</p>
+        <h2>Outcomes, not output</h2>
+      </div>
+
+      <div class="grid grid-3">
+        <blockquote class="quote">
+          <p>“They were shipping into our repo by day three. Six weeks later we launched a feature we'd scoped for two quarters.”</p>
+          <footer><strong>Priya Raman</strong><span>VP Engineering, Helios AI</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p>“The handover was the best part. No black boxes, no dependency — our team owns it completely.”</p>
+          <footer><strong>Marcus Bell</strong><span>CTO, Meridian</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p>“We cut inference cost 62% and doubled eval coverage in the same engagement.”</p>
+          <footer><strong>Dana Okafor</strong><span>Head of Data, Volt Labs</span></footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="pricing" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Engagements</p>
+          <h2>Simple, scoped, and flexible</h2>
+          <p class="section-sub">Every engagement starts with a paid discovery sprint. Cancel anytime.</p>
+        </div>
+
+        <div class="grid grid-3 pricing">
+          <article class="price-card">
+            <h3>Discovery</h3>
+            <p class="price"><span>$12k</span> / 2 weeks</p>
+            <p class="price-desc">Scope the problem and de-risk the build.</p>
+            <ul>
+              <li>Technical assessment</li>
+              <li>Architecture blueprint</li>
+              <li>Delivery roadmap</li>
+            </ul>
+            <a class="btn btn-ghost full" href="#contact">Start discovery</a>
+          </article>
+
+          <article class="price-card featured">
+            <span class="badge">Most popular</span>
+            <h3>Embedded squad</h3>
+            <p class="price"><span>$48k</span> / month</p>
+            <p class="price-desc">Two to four engineers inside your team.</p>
+            <ul>
+              <li>Dedicated FDE pod</li>
+              <li>Weekly production releases</li>
+              <li>Full handover &amp; docs</li>
+            </ul>
+            <a class="btn btn-primary full" href="#contact">Book a call</a>
+          </article>
+
+          <article class="price-card">
+            <h3>Advisory</h3>
+            <p class="price"><span>$9k</span> / month</p>
+            <p class="price-desc">Senior guidance without the full pod.</p>
+            <ul>
+              <li>Architecture reviews</li>
+              <li>Hiring &amp; team design</li>
+              <li>On-call escalation</li>
+            </ul>
+            <a class="btn btn-ghost full" href="#contact">Talk to us</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="cta">
+      <div class="container cta-inner">
+        <div>
+          <h2>Ready to deploy?</h2>
+          <p>Tell us what you're building. We'll reply within one business day with next steps.</p>
+        </div>
+        <form class="cta-form" onsubmit="return false;">
+          <label class="sr-only" for="email">Work email</label>
+          <input id="email" type="email" name="email" placeholder="you@company.com" required />
+          <button class="btn btn-primary" type="submit">Request a call</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Deploy</span>
+      </a>
+      <p>© 2026 Deploy Engineering. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
