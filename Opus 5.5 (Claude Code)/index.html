@@ -1,0 +1,1180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fieldwork — Forward Deployed Engineering</title>
+    <meta
+      name="description"
+      content="Senior forward deployed engineers who embed with your team, build against your real data, and ship production software in weeks."
+    />
+    <style>
+      /* ---------- Tokens ---------- */
+      :root {
+        --bg: #f7f5f0;
+        --bg-alt: #efece4;
+        --surface: #ffffff;
+        --text: #17191c;
+        --muted: #5b616b;
+        --border: #dcd8cd;
+        --accent: #d9480f;
+        --accent-hover: #b83a08;
+        --accent-soft: #fde7dc;
+        --on-accent: #ffffff;
+        --ok: #2f7d4f;
+        --terminal-bg: #15181d;
+        --terminal-text: #e6e3da;
+        --terminal-muted: #8b919c;
+
+        --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+
+        --radius: 12px;
+        --radius-sm: 8px;
+        --container: 1120px;
+        --gutter: clamp(1rem, 4vw, 2rem);
+        --section-y: clamp(3.5rem, 8vw, 6.5rem);
+        --shadow: 0 1px 2px rgba(23, 25, 28, 0.05), 0 12px 32px -12px rgba(23, 25, 28, 0.18);
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #111317;
+          --bg-alt: #171a1f;
+          --surface: #1c2026;
+          --text: #edeae2;
+          --muted: #a0a6b0;
+          --border: #2c3139;
+          --accent: #ff7a45;
+          --accent-hover: #ff935f;
+          --accent-soft: #3a2218;
+          --on-accent: #17191c;
+          --ok: #6fcf97;
+          --terminal-bg: #0b0d10;
+          --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+        }
+      }
+
+      /* ---------- Base ---------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 5rem;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      ul,
+      ol {
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+      }
+
+      h1 {
+        font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+        font-weight: 700;
+      }
+
+      h2 {
+        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+        font-weight: 700;
+      }
+
+      h3 {
+        font-size: 1.15rem;
+        font-weight: 650;
+      }
+
+      ul,
+      ol {
+        padding: 0;
+        list-style: none;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: var(--container);
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 1rem;
+        top: -4rem;
+        z-index: 100;
+        padding: 0.5rem 1rem;
+        background: var(--text);
+        color: var(--bg);
+        border-radius: var(--radius-sm);
+      }
+
+      .skip-link:focus {
+        top: 1rem;
+      }
+
+      .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1rem;
+      }
+
+      /* ---------- Buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem 1.4rem;
+        border: 1px solid var(--accent);
+        border-radius: 999px;
+        background: var(--accent);
+        color: var(--on-accent);
+        font: inherit;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          background-color 0.15s ease,
+          border-color 0.15s ease,
+          color 0.15s ease;
+      }
+
+      .btn:hover {
+        background: var(--accent-hover);
+        border-color: var(--accent-hover);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      .btn-ghost:hover {
+        background: transparent;
+        border-color: var(--text);
+      }
+
+      .btn-small {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      /* ---------- Header ---------- */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        min-height: 4rem;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: -0.01em;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        width: 1.1rem;
+        height: 1.1rem;
+        border-radius: 3px;
+        background: var(--accent);
+        box-shadow: 0.3rem 0.3rem 0 0 var(--text);
+        margin-right: 0.3rem;
+      }
+
+      .nav-toggle {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .nav-button {
+        display: grid;
+        gap: 5px;
+        padding: 0.75rem 0.5rem;
+        cursor: pointer;
+      }
+
+      .nav-button span {
+        display: block;
+        width: 1.5rem;
+        height: 2px;
+        background: var(--text);
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s ease;
+      }
+
+      .nav-toggle:focus-visible + .nav-button {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      .nav-toggle:checked + .nav-button span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .nav-toggle:checked + .nav-button span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .nav-toggle:checked + .nav-button span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .site-nav {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 100%;
+        padding: 0.5rem 0 1.5rem;
+      }
+
+      .nav-toggle:checked ~ .site-nav {
+        display: flex;
+      }
+
+      .site-nav a:not(.btn) {
+        color: var(--muted);
+        font-weight: 500;
+        text-decoration: none;
+      }
+
+      .site-nav a:not(.btn):hover {
+        color: var(--text);
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        padding-block: clamp(3rem, 8vw, 6rem);
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .hero-copy,
+      .deploy-card {
+        min-width: 0;
+      }
+
+      .lead {
+        margin-top: 1.5rem;
+        max-width: 34rem;
+        font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+        color: var(--muted);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+
+      .hero-points {
+        display: grid;
+        gap: 0.5rem;
+        margin-top: 2rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .hero-points li {
+        position: relative;
+        padding-left: 1.5rem;
+      }
+
+      .hero-points li::before {
+        content: "";
+        position: absolute;
+        left: 0.15rem;
+        top: 0.45em;
+        width: 0.7rem;
+        height: 0.35rem;
+        border-left: 2px solid var(--accent);
+        border-bottom: 2px solid var(--accent);
+        transform: rotate(-45deg);
+      }
+
+      .deploy-card {
+        background: var(--terminal-bg);
+        color: var(--terminal-text);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        overflow: hidden;
+      }
+
+      .deploy-card-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .deploy-card-bar span {
+        width: 0.65rem;
+        height: 0.65rem;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      .deploy-card-bar p {
+        margin-left: 0.5rem;
+        color: var(--terminal-muted);
+        font-size: 0.8rem;
+      }
+
+      .deploy-log {
+        padding: 0.5rem 1rem 1rem;
+      }
+
+      .deploy-log li {
+        display: grid;
+        grid-template-columns: 4.5rem 1fr;
+        gap: 0.25rem 0.75rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+      }
+
+      .deploy-log li:last-child {
+        border-bottom: 0;
+      }
+
+      .log-when {
+        color: var(--terminal-muted);
+      }
+
+      .log-status {
+        grid-column: 2;
+        font-size: 0.75rem;
+        color: #6fcf97;
+      }
+
+      .log-status::before {
+        content: "● ";
+      }
+
+      .log-status.active {
+        color: #ff9a6b;
+      }
+
+      /* ---------- Stats ---------- */
+      .stats {
+        border-block: 1px solid var(--border);
+        background: var(--bg-alt);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem 1.5rem;
+        padding-block: 2.5rem;
+      }
+
+      .stat-value {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+
+      .stat-label {
+        margin-top: 0.4rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      /* ---------- Sections ---------- */
+      .section {
+        padding-block: var(--section-y);
+      }
+
+      .section-alt {
+        background: var(--bg-alt);
+        border-block: 1px solid var(--border);
+      }
+
+      .section-head {
+        max-width: 40rem;
+        margin-bottom: clamp(2rem, 5vw, 3.5rem);
+      }
+
+      .section-head h2 + p {
+        margin-top: 1rem;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      /* ---------- Service cards ---------- */
+      .card-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .card {
+        padding: 1.75rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        transition:
+          border-color 0.15s ease,
+          transform 0.15s ease;
+      }
+
+      .card:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .card-num {
+        display: block;
+        margin-bottom: 1.25rem;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--accent);
+      }
+
+      .card p {
+        margin-top: 0.6rem;
+        color: var(--muted);
+      }
+
+      /* ---------- Process ---------- */
+      .steps {
+        display: grid;
+        gap: 2rem;
+        counter-reset: step;
+      }
+
+      .step {
+        position: relative;
+        padding-left: 1.75rem;
+        border-left: 2px solid var(--border);
+      }
+
+      .step::before {
+        content: "";
+        position: absolute;
+        left: -0.45rem;
+        top: 0.2rem;
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px var(--bg-alt);
+      }
+
+      .step-when {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+      }
+
+      .step p:last-child {
+        margin-top: 0.6rem;
+        color: var(--muted);
+      }
+
+      /* ---------- Plans ---------- */
+      .plan-grid {
+        display: grid;
+        gap: 1rem;
+        align-items: stretch;
+      }
+
+      .plan {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 1.75rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+      }
+
+      .plan-featured {
+        border-color: var(--accent);
+        box-shadow: var(--shadow);
+      }
+
+      .plan-badge {
+        align-self: flex-start;
+        margin-bottom: 1rem;
+        padding: 0.2rem 0.7rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .plan h3 {
+        font-size: 1.35rem;
+      }
+
+      .plan-term {
+        margin-top: 0.4rem;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      .plan-desc {
+        margin-top: 1rem;
+      }
+
+      .plan ul {
+        display: grid;
+        gap: 0.6rem;
+        margin: 1.5rem 0 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .plan li {
+        position: relative;
+        padding-left: 1.25rem;
+      }
+
+      .plan li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.6em;
+        width: 0.4rem;
+        height: 0.4rem;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      .plan .btn {
+        margin-top: auto;
+      }
+
+      /* ---------- FAQ ---------- */
+      .faq-layout {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .faq-layout .section-head {
+        margin-bottom: 1rem;
+      }
+
+      .faq-list details {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .faq-list details:first-child {
+        border-top: 1px solid var(--border);
+      }
+
+      .faq-list summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.25rem 0;
+        font-weight: 600;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .faq-list summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-list summary::after {
+        content: "+";
+        flex-shrink: 0;
+        font-family: var(--font-mono);
+        font-size: 1.25rem;
+        line-height: 1;
+        color: var(--accent);
+        transition: transform 0.2s ease;
+      }
+
+      .faq-list details[open] summary::after {
+        transform: rotate(45deg);
+      }
+
+      .faq-list details p {
+        padding-bottom: 1.25rem;
+        max-width: 40rem;
+        color: var(--muted);
+      }
+
+      /* ---------- Contact ---------- */
+      .contact-grid {
+        display: grid;
+        gap: 2.5rem;
+      }
+
+      .contact-copy h2 + p {
+        margin-top: 1rem;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .contact-alt {
+        margin-top: 1.5rem;
+        color: var(--muted);
+      }
+
+      .contact-alt a {
+        color: var(--accent);
+      }
+
+      .contact-form {
+        display: grid;
+        gap: 1.1rem;
+        padding: clamp(1.25rem, 4vw, 2rem);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .field {
+        display: grid;
+        gap: 0.4rem;
+      }
+
+      .field label {
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .field input,
+      .field textarea {
+        width: 100%;
+        padding: 0.75rem 0.9rem;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        color: var(--text);
+        font: inherit;
+      }
+
+      .field textarea {
+        resize: vertical;
+        min-height: 6rem;
+      }
+
+      .field input:focus,
+      .field textarea:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 1px;
+        border-color: var(--accent);
+      }
+
+      /* ---------- Footer ---------- */
+      .site-footer {
+        border-top: 1px solid var(--border);
+        padding-block: 2.5rem;
+      }
+
+      .footer-inner {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .footer-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.5rem;
+      }
+
+      .footer-nav a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .footer-nav a:hover {
+        color: var(--text);
+      }
+
+      .footer-note {
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      /* ---------- Breakpoints ---------- */
+      @media (min-width: 640px) {
+        .card-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .deploy-log li {
+          grid-template-columns: 4.5rem 1fr auto;
+          align-items: baseline;
+        }
+
+        .log-status {
+          grid-column: auto;
+        }
+      }
+
+      @media (min-width: 860px) {
+        .nav-button {
+          display: none;
+        }
+
+        .site-nav {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 1.75rem;
+          width: auto;
+          padding: 0;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 4rem;
+        }
+
+        .card-grid,
+        .plan-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .steps {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0;
+        }
+
+        .step {
+          padding: 2rem 1.5rem 0 0;
+          border-left: 0;
+          border-top: 2px solid var(--border);
+        }
+
+        .step::before {
+          left: 0;
+          top: -0.45rem;
+        }
+
+        .faq-layout {
+          grid-template-columns: 1fr 1.4fr;
+          gap: 4rem;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: start;
+        }
+
+        .footer-inner {
+          grid-template-columns: auto 1fr auto;
+          align-items: center;
+        }
+
+        .footer-nav {
+          justify-content: center;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Fieldwork home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          Fieldwork
+        </a>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" />
+        <label for="nav-toggle" class="nav-button" aria-hidden="true"> <span></span><span></span><span></span> </label>
+
+        <nav class="site-nav" aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#engagements">Engagements</a>
+          <a href="#faq">FAQ</a>
+          <a class="btn btn-small" href="#contact">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Forward deployed engineering</p>
+            <h1>Engineers who ship inside your business, not beside it.</h1>
+            <p class="lead">
+              We embed senior engineers with your team, build against your real data and systems, and put working software into production in weeks,
+              not quarters.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="#contact">Book a scoping call</a>
+              <a class="btn btn-ghost" href="#process">See how it works</a>
+            </div>
+            <ul class="hero-points">
+              <li>On-site or in your Slack from day one</li>
+              <li>Fixed-scope pilots, no long lock-in</li>
+              <li>Full handover of code and docs</li>
+            </ul>
+          </div>
+
+          <aside class="deploy-card" aria-label="Example engagement timeline">
+            <div class="deploy-card-bar">
+              <span></span><span></span><span></span>
+              <p>engagement.log</p>
+            </div>
+            <ol class="deploy-log">
+              <li>
+                <span class="log-when">Day 1</span>
+                <span class="log-what">Engineers on-site, access provisioned</span>
+                <span class="log-status done">done</span>
+              </li>
+              <li>
+                <span class="log-when">Week 1</span>
+                <span class="log-what">Workflow mapped with operators</span>
+                <span class="log-status done">done</span>
+              </li>
+              <li>
+                <span class="log-when">Week 2</span>
+                <span class="log-what">Prototype running on live data</span>
+                <span class="log-status done">done</span>
+              </li>
+              <li>
+                <span class="log-when">Week 4</span>
+                <span class="log-what">First users in production</span>
+                <span class="log-status done">done</span>
+              </li>
+              <li>
+                <span class="log-when">Week 8</span>
+                <span class="log-what">Rollout, training, handover</span>
+                <span class="log-status active">in progress</span>
+              </li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Key figures">
+        <div class="container stats-grid">
+          <div class="stat">
+            <p class="stat-value">4 wks</p>
+            <p class="stat-label">Typical time to first production release</p>
+          </div>
+          <div class="stat">
+            <p class="stat-value">2–4</p>
+            <p class="stat-label">Senior engineers per embedded pod</p>
+          </div>
+          <div class="stat">
+            <p class="stat-value">100%</p>
+            <p class="stat-label">Of the code and IP stays with you</p>
+          </div>
+          <div class="stat">
+            <p class="stat-value">1 day</p>
+            <p class="stat-label">From kickoff to engineers in your systems</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Services</p>
+            <h2>What a forward deployed team does for you</h2>
+            <p>
+              Our engineers own the outcome end to end: they sit with the people doing the work, find the real problem, and build the thing that
+              solves it.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            <article class="card">
+              <span class="card-num">01</span>
+              <h3>Embedded delivery</h3>
+              <p>A dedicated pod works alongside your operators and engineers, shipping in your repos and your environments.</p>
+            </article>
+            <article class="card">
+              <span class="card-num">02</span>
+              <h3>AI and agent deployment</h3>
+              <p>We take models from demo to dependable: evaluation, guardrails, retrieval, and tooling wired into real workflows.</p>
+            </article>
+            <article class="card">
+              <span class="card-num">03</span>
+              <h3>Data and systems integration</h3>
+              <p>ERPs, warehouses, legacy APIs, spreadsheets. We connect what you already have instead of asking you to replace it.</p>
+            </article>
+            <article class="card">
+              <span class="card-num">04</span>
+              <h3>Workflow discovery</h3>
+              <p>Shadowing, interviews, and process mapping to pin down where software will move a number that matters.</p>
+            </article>
+            <article class="card">
+              <span class="card-num">05</span>
+              <h3>Production hardening</h3>
+              <p>Monitoring, access control, testing, and runbooks so the pilot survives contact with the whole organisation.</p>
+            </article>
+            <article class="card">
+              <span class="card-num">06</span>
+              <h3>Enablement and handover</h3>
+              <p>Pairing, documentation, and training so your team runs and extends the system after we step back.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="process">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Process</p>
+            <h2>From first call to production in four steps</h2>
+          </div>
+
+          <ol class="steps">
+            <li class="step">
+              <p class="step-when">Week 0</p>
+              <h3>Scope</h3>
+              <p>We agree one problem, one owner, and one metric. You get a written plan and a fixed pilot price.</p>
+            </li>
+            <li class="step">
+              <p class="step-when">Weeks 1–2</p>
+              <h3>Embed</h3>
+              <p>Engineers join your team, learn the workflow first-hand, and get a prototype running on real data.</p>
+            </li>
+            <li class="step">
+              <p class="step-when">Weeks 3–6</p>
+              <h3>Ship</h3>
+              <p>Weekly releases to real users. Feedback from the floor goes straight into the next build.</p>
+            </li>
+            <li class="step">
+              <p class="step-when">Weeks 7–8</p>
+              <h3>Hand over</h3>
+              <p>We harden, document, and train. You decide whether to extend, expand, or run it yourselves.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section" id="engagements">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Engagements</p>
+            <h2>Three ways to work with us</h2>
+            <p>Start small and prove value before you commit to more.</p>
+          </div>
+
+          <div class="plan-grid">
+            <article class="plan">
+              <h3>Pilot</h3>
+              <p class="plan-term">6–8 weeks, fixed scope</p>
+              <p class="plan-desc">One workflow, one pod, one measurable result in production.</p>
+              <ul>
+                <li>2 forward deployed engineers</li>
+                <li>Discovery and workflow mapping</li>
+                <li>Production release and handover</li>
+              </ul>
+              <a class="btn btn-ghost" href="#contact">Start a pilot</a>
+            </article>
+
+            <article class="plan plan-featured">
+              <p class="plan-badge">Most common</p>
+              <h3>Embedded pod</h3>
+              <p class="plan-term">Quarterly, rolling</p>
+              <p class="plan-desc">A standing team that works through your roadmap of operational problems.</p>
+              <ul>
+                <li>3–4 engineers plus a delivery lead</li>
+                <li>Multiple workflows in parallel</li>
+                <li>Weekly releases and stakeholder reviews</li>
+                <li>On-site presence as needed</li>
+              </ul>
+              <a class="btn" href="#contact">Talk to us</a>
+            </article>
+
+            <article class="plan">
+              <h3>Build your FDE team</h3>
+              <p class="plan-term">3–6 months</p>
+              <p class="plan-desc">We stand up your own forward deployed function and hire our replacements.</p>
+              <ul>
+                <li>Hiring profiles and interview loops</li>
+                <li>Playbooks and delivery rituals</li>
+                <li>Pairing with your first hires</li>
+              </ul>
+              <a class="btn btn-ghost" href="#contact">Plan a program</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="faq">
+        <div class="container faq-layout">
+          <div class="section-head">
+            <p class="eyebrow">FAQ</p>
+            <h2>Questions we hear on the first call</h2>
+          </div>
+
+          <div class="faq-list">
+            <details open>
+              <summary>How is this different from consulting or staff augmentation?</summary>
+              <p>
+                Consultants hand over recommendations and contractors take tickets. Forward deployed engineers own a business outcome, find the
+                problem themselves, and write the production code that fixes it.
+              </p>
+            </details>
+            <details>
+              <summary>Do your engineers work on-site?</summary>
+              <p>
+                Yes, wherever it helps. Most engagements start with time on-site next to the people doing the work, then settle into a mix of on-site
+                and remote.
+              </p>
+            </details>
+            <details>
+              <summary>Who owns the code?</summary>
+              <p>You do. Everything is built in your repositories and environments, and all IP transfers to you.</p>
+            </details>
+            <details>
+              <summary>How do you handle security and data access?</summary>
+              <p>
+                We work inside your environment under your access controls, sign your NDA and data agreements, and follow your review and deployment
+                processes.
+              </p>
+            </details>
+            <details>
+              <summary>What happens when the engagement ends?</summary>
+              <p>
+                You get documentation, runbooks, and a trained team. You can extend the engagement, move to light-touch support, or run everything on
+                your own.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="container contact-grid">
+          <div class="contact-copy">
+            <p class="eyebrow">Get started</p>
+            <h2>Tell us the problem. We'll tell you if we can ship it.</h2>
+            <p>A 30-minute scoping call with an engineer, not a salesperson. You'll leave with an honest view of what is feasible in eight weeks.</p>
+            <p class="contact-alt">Prefer email? <a href="mailto:hello@example.com">hello@example.com</a></p>
+          </div>
+
+          <form class="contact-form" action="#" method="post">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Work email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="message">What are you trying to solve?</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button class="btn" type="submit">Request a scoping call</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true"></span>
+          Fieldwork
+        </a>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#engagements">Engagements</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <p class="footer-note">&copy; 2026 Fieldwork. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
