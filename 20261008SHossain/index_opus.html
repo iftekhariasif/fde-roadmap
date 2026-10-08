@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Forward Deployed Engineers who embed with your customers and ship production integrations in weeks.">
+<title>Fieldline FDE</title>
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --surface-2: #efede6;
+    --ink: #16181d;
+    --ink-2: #4a4f5a;
+    --ink-3: #7a808c;
+    --line: #e2dfd6;
+    --brand: #c2410c;
+    --brand-ink: #ffffff;
+    --brand-soft: #fbe7dc;
+    --good: #15803d;
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(22,24,29,.04), 0 8px 24px -12px rgba(22,24,29,.12);
+    --max: 1160px;
+    --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SF Mono", Consolas, Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111214;
+      --surface: #18191c;
+      --surface-2: #202226;
+      --ink: #f1efe9;
+      --ink-2: #b9b6ad;
+      --ink-3: #8a877f;
+      --line: #2c2e33;
+      --brand: #f97316;
+      --brand-ink: #111214;
+      --brand-soft: #3a2316;
+      --good: #4ade80;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.6 var(--font);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { margin: 0; line-height: 1.15; letter-spacing: -0.02em; }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .skip { position: absolute; left: -999px; }
+  .skip:focus { left: 16px; top: 16px; background: var(--brand); color: var(--brand-ink); padding: 8px 12px; border-radius: 8px; z-index: 999; }
+  :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 46px; padding: 0 22px; border-radius: 999px;
+    font-weight: 600; font-size: .95rem; border: 1px solid transparent;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-solid { background: var(--ink); color: var(--bg); }
+  .btn-brand { background: var(--brand); color: var(--brand-ink); }
+  .btn-line { border-color: var(--line); background: var(--surface); }
+  .btn-line:hover { border-color: var(--ink-3); }
+
+  .kicker {
+    font: 600 .78rem/1 var(--mono); text-transform: uppercase; letter-spacing: .12em;
+    color: var(--brand);
+  }
+
+  /* Header */
+  .top {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.1rem; }
+  .brand-mark {
+    width: 28px; height: 28px; border-radius: 8px; background: var(--brand);
+    display: grid; place-items: center; color: var(--brand-ink); font: 700 .8rem var(--mono);
+  }
+  .menu { display: flex; align-items: center; gap: 28px; font-size: .94rem; color: var(--ink-2); }
+  .menu a:hover { color: var(--ink); }
+  .menu .btn { color: var(--bg); }
+
+  /* CSS-only mobile menu */
+  #nav-toggle { display: none; }
+  .burger { display: none; width: 44px; height: 44px; border-radius: 10px; cursor: pointer; align-items: center; justify-content: center; border: 1px solid var(--line); background: var(--surface); }
+  .burger span, .burger span::before, .burger span::after {
+    display: block; width: 18px; height: 2px; background: var(--ink); position: relative; transition: .2s;
+  }
+  .burger span::before, .burger span::after { content: ""; position: absolute; left: 0; }
+  .burger span::before { top: -6px; }
+  .burger span::after { top: 6px; }
+
+  /* Hero */
+  .hero { padding: 88px 0 72px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px 6px 6px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--line);
+    font-size: .85rem; color: var(--ink-2); margin-bottom: 24px;
+  }
+  .pill b { background: var(--brand-soft); color: var(--brand); padding: 2px 8px; border-radius: 999px; font-size: .75rem; }
+  .hero h1 { font-size: clamp(2.3rem, 5vw, 3.9rem); font-weight: 800; margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: var(--brand); }
+  .hero .lede { font-size: 1.15rem; color: var(--ink-2); max-width: 34ch; margin-bottom: 32px; }
+  .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .proof { display: flex; align-items: center; gap: 12px; margin-top: 32px; font-size: .9rem; color: var(--ink-3); }
+  .avatars { display: flex; }
+  .avatars i {
+    width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--bg);
+    margin-left: -8px; background: var(--surface-2);
+  }
+  .avatars i:first-child { margin-left: 0; background: #fdba74; }
+  .avatars i:nth-child(2) { background: #93c5fd; }
+  .avatars i:nth-child(3) { background: #86efac; }
+  .avatars i:nth-child(4) { background: #d8b4fe; }
+
+  /* Deployment console */
+  .console {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .console-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--surface-2);
+    font: 500 .8rem var(--mono); color: var(--ink-3);
+  }
+  .live { display: inline-flex; align-items: center; gap: 6px; color: var(--good); }
+  .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; animation: pulse 1.8s infinite; }
+  @keyframes pulse { 50% { opacity: .3; } }
+  .console-body { padding: 20px; display: grid; gap: 14px; }
+  .task { display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; align-items: center; font-size: .92rem; }
+  .task .ic { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: .7rem; font-weight: 700; }
+  .task.done .ic { background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good); }
+  .task.run .ic { background: var(--brand-soft); color: var(--brand); }
+  .task.todo .ic { border: 1.5px dashed var(--line); }
+  .task.todo { color: var(--ink-3); }
+  .task small { font: .78rem var(--mono); color: var(--ink-3); }
+  .bar { height: 6px; background: var(--surface-2); border-radius: 99px; overflow: hidden; margin-top: 6px; }
+  .bar span { display: block; height: 100%; width: 68%; background: var(--brand); border-radius: inherit; }
+  .console-foot {
+    display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line);
+  }
+  .console-foot div { padding: 14px 16px; border-left: 1px solid var(--line); }
+  .console-foot div:first-child { border-left: 0; }
+  .console-foot strong { display: block; font-size: 1.2rem; }
+  .console-foot span { font-size: .78rem; color: var(--ink-3); }
+
+  /* Logos */
+  .logos { border-block: 1px solid var(--line); padding: 28px 0; }
+  .logos .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; }
+  .logos p { font-size: .85rem; color: var(--ink-3); }
+  .logos ul { display: flex; gap: 40px; flex-wrap: wrap; font: 700 1.05rem var(--font); color: var(--ink-3); letter-spacing: .02em; }
+
+  /* Sections */
+  section.block { padding: 96px 0; }
+  .head { max-width: 640px; margin-bottom: 52px; }
+  .head.center { margin-inline: auto; text-align: center; }
+  .head h2 { font-size: clamp(1.85rem, 3.4vw, 2.7rem); font-weight: 800; margin: 14px 0 14px; }
+  .head p { color: var(--ink-2); font-size: 1.05rem; }
+
+  /* Problem / solution split */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .compare > div { border-radius: var(--radius); padding: 32px; border: 1px solid var(--line); }
+  .compare .before { background: var(--surface-2); }
+  .compare .after { background: var(--surface); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--brand) 35%, var(--line)); }
+  .compare h3 { font-size: 1.15rem; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+  .compare li { display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); color: var(--ink-2); font-size: .95rem; }
+  .compare li:first-child { border-top: 0; }
+  .compare .before li::before { content: "×"; color: var(--ink-3); font-weight: 700; }
+  .compare .after li::before { content: "✓"; color: var(--good); font-weight: 700; }
+
+  /* Services bento */
+  .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
+  .tile {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px; display: flex; flex-direction: column; gap: 12px;
+    transition: border-color .2s, transform .2s;
+  }
+  .tile:hover { border-color: var(--ink-3); transform: translateY(-2px); }
+  .tile.span-3 { grid-column: span 3; }
+  .tile.span-2 { grid-column: span 2; }
+  .tile.feature { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .tile.feature p { color: color-mix(in srgb, var(--bg) 70%, var(--ink)); }
+  .tile .num { font: 600 .78rem var(--mono); color: var(--brand); }
+  .tile h3 { font-size: 1.2rem; }
+  .tile p { color: var(--ink-2); font-size: .95rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 8px; }
+  .tags span { font: .75rem var(--mono); padding: 4px 9px; border-radius: 6px; background: var(--surface-2); color: var(--ink-2); }
+  .tile.feature .tags span { background: color-mix(in srgb, var(--bg) 14%, var(--ink)); color: var(--bg); }
+
+  /* Timeline */
+  .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: step; position: relative; }
+  .timeline li { padding: 0 24px 0 0; position: relative; }
+  .timeline li::before {
+    counter-increment: step; content: counter(step, decimal-leading-zero);
+    display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--line); font: 600 .85rem var(--mono);
+    position: relative; z-index: 1; margin-bottom: 20px;
+  }
+  .timeline li::after {
+    content: ""; position: absolute; top: 22px; left: 44px; right: 0; height: 1px; background: var(--line);
+  }
+  .timeline li:last-child::after { display: none; }
+  .timeline .when { font: .78rem var(--mono); color: var(--brand); display: block; margin-bottom: 6px; }
+  .timeline h4 { font-size: 1.08rem; margin-bottom: 8px; }
+  .timeline p { color: var(--ink-2); font-size: .93rem; }
+
+  /* Metrics */
+  .metrics { background: var(--ink); color: var(--bg); border-radius: 24px; padding: 56px; display: grid; grid-template-columns: 1.2fr 2fr; gap: 48px; align-items: center; }
+  .metrics h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  .metrics .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .metrics strong { display: block; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; color: var(--brand); letter-spacing: -0.03em; }
+  .metrics span { font-size: .9rem; color: color-mix(in srgb, var(--bg) 70%, var(--ink)); }
+
+  /* Quote */
+  .quote { max-width: 820px; margin: 0 auto; text-align: center; }
+  .quote blockquote { margin: 0 0 28px; font-size: clamp(1.25rem, 2.6vw, 1.75rem); line-height: 1.4; font-weight: 600; letter-spacing: -0.01em; }
+  .quote cite { font-style: normal; color: var(--ink-3); font-size: .95rem; }
+  .quote cite b { color: var(--ink); display: block; }
+
+  /* Pricing */
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+  .plan { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column; }
+  .plan.pop { border: 2px solid var(--brand); box-shadow: var(--shadow); position: relative; }
+  .plan.pop .badge { position: absolute; top: -13px; right: 24px; background: var(--brand); color: var(--brand-ink); font: 600 .72rem var(--mono); text-transform: uppercase; letter-spacing: .08em; padding: 5px 10px; border-radius: 6px; }
+  .plan h3 { font-size: 1.1rem; }
+  .plan .for { color: var(--ink-3); font-size: .9rem; margin: 6px 0 20px; }
+  .plan .price { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; }
+  .plan .price small { font-size: .9rem; font-weight: 500; color: var(--ink-3); letter-spacing: 0; }
+  .plan ul { margin: 24px 0 28px; flex: 1; display: grid; gap: 10px; align-content: start; }
+  .plan li { display: flex; gap: 10px; font-size: .93rem; color: var(--ink-2); }
+  .plan li::before { content: "→"; color: var(--brand); }
+
+  /* FAQ */
+  .faq { max-width: 780px; margin: 0 auto; }
+  .faq details { border-bottom: 1px solid var(--line); padding: 20px 0; }
+  .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; font-weight: 600; font-size: 1.05rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font: 400 1.4rem/1 var(--mono); color: var(--ink-3); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { color: var(--ink-2); margin-top: 12px; max-width: 65ch; }
+
+  /* CTA */
+  .cta { background: var(--brand); color: var(--brand-ink); border-radius: 24px; padding: 64px 48px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
+  .cta h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 800; margin-bottom: 12px; }
+  .cta p { opacity: .85; }
+  .cta form { display: flex; flex-direction: column; gap: 12px; }
+  .cta input {
+    min-height: 48px; padding: 0 16px; border-radius: 12px; border: 0; font: inherit;
+    background: color-mix(in srgb, var(--brand-ink) 14%, var(--brand)); color: var(--brand-ink);
+  }
+  .cta input::placeholder { color: color-mix(in srgb, var(--brand-ink) 65%, var(--brand)); }
+  .cta button { cursor: pointer; background: var(--brand-ink); color: var(--brand); border: 0; font: inherit; font-weight: 700; }
+
+  /* Footer */
+  footer { padding: 64px 0 32px; border-top: 1px solid var(--line); margin-top: 96px; }
+  .foot { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
+  .foot p { color: var(--ink-3); font-size: .92rem; margin-top: 12px; max-width: 32ch; }
+  .foot h4 { font: 600 .78rem var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 14px; }
+  .foot li { margin-bottom: 8px; font-size: .93rem; color: var(--ink-2); }
+  .foot li a:hover { color: var(--ink); }
+  .legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: .85rem; color: var(--ink-3); }
+
+  /* Responsive */
+  @media (max-width: 1000px) {
+    .hero .wrap { grid-template-columns: 1fr; gap: 48px; }
+    .hero .lede { max-width: 52ch; }
+    .bento { grid-template-columns: repeat(2, 1fr); }
+    .tile.span-3, .tile.span-2 { grid-column: span 1; }
+    .tile.feature { grid-column: span 2; }
+    .timeline { grid-template-columns: repeat(2, 1fr); gap: 40px 0; }
+    .timeline li:nth-child(2)::after { display: none; }
+    .metrics { grid-template-columns: 1fr; padding: 44px; }
+    .plans { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    .cta { grid-template-columns: 1fr; padding: 48px 32px; }
+    .foot { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 760px) {
+    .burger { display: inline-flex; }
+    .menu {
+      position: absolute; top: 68px; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--bg); border-bottom: 1px solid var(--line);
+      padding: 8px 24px 20px; display: none;
+    }
+    .menu a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .menu .btn { margin-top: 12px; border: 0; }
+    #nav-toggle:checked ~ .menu { display: flex; }
+    #nav-toggle:checked + .burger span { background: transparent; }
+    #nav-toggle:checked + .burger span::before { top: 0; transform: rotate(45deg); }
+    #nav-toggle:checked + .burger span::after { top: 0; transform: rotate(-45deg); }
+
+    .hero { padding: 56px 0 48px; }
+    section.block { padding: 64px 0; }
+    .compare { grid-template-columns: 1fr; }
+    .logos .wrap { justify-content: center; text-align: center; }
+    .logos ul { justify-content: center; gap: 24px; }
+    .metrics .grid { grid-template-columns: 1fr; gap: 20px; }
+    .metrics { padding: 36px 24px; border-radius: 18px; }
+    .cta { border-radius: 18px; padding: 40px 24px; }
+  }
+
+  @media (max-width: 560px) {
+    .wrap { padding: 0 16px; }
+    .bento { grid-template-columns: 1fr; }
+    .tile.feature { grid-column: span 1; }
+    .timeline { grid-template-columns: 1fr; }
+    .timeline li { padding: 0 0 0 64px; }
+    .timeline li::before { position: absolute; left: 0; top: 0; margin: 0; }
+    .timeline li::after { display: block !important; left: 22px; top: 44px; bottom: -40px; right: auto; width: 1px; height: auto; }
+    .timeline li:last-child::after { display: none !important; }
+    .hero .actions .btn { flex: 1 1 100%; }
+    .console-foot strong { font-size: 1rem; }
+    .foot { grid-template-columns: 1fr; }
+    .legal { flex-direction: column; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a href="#" class="brand" aria-label="Fieldline home"><span class="brand-mark">FL</span>Fieldline</a>
+    <input type="checkbox" id="nav-toggle" aria-hidden="true">
+    <label for="nav-toggle" class="burger" aria-label="Open menu"><span></span></label>
+    <nav class="menu" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="btn btn-solid">Book a scoping call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="pill"><b>New</b> AI agent deployment track now open</span>
+        <h1>Engineers who ship <em>inside</em> your customer's environment.</h1>
+        <p class="lede">Fieldline provides Forward Deployed Engineers who embed with your enterprise accounts, wire your product into their stack, and turn stalled pilots into production.</p>
+        <div class="actions">
+          <a href="#contact" class="btn btn-brand">Start a deployment</a>
+          <a href="#process" class="btn btn-line">See how it works</a>
+        </div>
+        <div class="proof">
+          <div class="avatars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <span>40+ senior FDEs across 11 time zones</span>
+        </div>
+      </div>
+
+      <div class="console" aria-label="Example deployment status">
+        <div class="console-bar">
+          <span>deploy / acme-logistics</span>
+          <span class="live">Live</span>
+        </div>
+        <div class="console-body">
+          <div class="task done"><span class="ic">✓</span><span>SSO + SCIM provisioning</span><small>Day 3</small></div>
+          <div class="task done"><span class="ic">✓</span><span>SAP → warehouse data sync</span><small>Day 8</small></div>
+          <div class="task run">
+            <span class="ic">●</span>
+            <div><span>Custom routing agent rollout</span><div class="bar"><span></span></div></div>
+            <small>68%</small>
+          </div>
+          <div class="task todo"><span class="ic"></span><span>Handoff &amp; runbook review</span><small>Day 21</small></div>
+        </div>
+        <div class="console-foot">
+          <div><strong>3 wks</strong><span>To production</span></div>
+          <div><strong>14</strong><span>Systems linked</span></div>
+          <div><strong>0</strong><span>Escalations</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logos -->
+  <div class="logos">
+    <div class="wrap">
+      <p>Embedded with teams at</p>
+      <ul>
+        <li>Northwind</li><li>Quantra</li><li>Helios</li><li>Basalt</li><li>Kestrel</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Problem / solution -->
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Why FDE</span>
+        <h2>Great products still stall at the last mile.</h2>
+        <p>Enterprise buyers don't need another demo. They need someone who understands their systems and can make your product work there.</p>
+      </div>
+      <div class="compare">
+        <div class="before">
+          <h3>Without embedded engineering</h3>
+          <ul>
+            <li>Pilots drag on for quarters waiting on integration work</li>
+            <li>Customer IT treats your product as another ticket in the queue</li>
+            <li>Your core engineers get pulled into one-off custom requests</li>
+            <li>Field feedback reaches the roadmap months too late</li>
+          </ul>
+        </div>
+        <div class="after">
+          <h3>With a Fieldline FDE</h3>
+          <ul>
+            <li>A dedicated engineer owns time-to-value from day one</li>
+            <li>Integrations ship in the customer's repo, on their infra</li>
+            <li>Your product team stays focused on the platform</li>
+            <li>Weekly field reports flag patterns worth productizing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="block" id="services" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Services</span>
+        <h2>Everything between "signed" and "in production."</h2>
+      </div>
+      <div class="bento">
+        <article class="tile feature span-3">
+          <span class="num">01</span>
+          <h3>Embedded deployment pods</h3>
+          <p>One to three FDEs join the customer's standups, Slack, and repos. They scope, build, and ship the integration work needed to go live, then stay until it sticks.</p>
+          <div class="tags"><span>On-site or remote</span><span>2–12 weeks</span><span>Customer-facing</span></div>
+        </article>
+        <article class="tile span-3">
+          <span class="num">02</span>
+          <h3>Systems integration</h3>
+          <p>Connectors, data pipelines, and identity setup across ERPs, CRMs, data warehouses, and internal tools.</p>
+          <div class="tags"><span>SAP</span><span>Salesforce</span><span>Snowflake</span><span>Okta</span></div>
+        </article>
+        <article class="tile span-2">
+          <span class="num">03</span>
+          <h3>AI &amp; agent rollout</h3>
+          <p>Prompting, evals, retrieval, and guardrails tuned to the customer's real data and workflows.</p>
+        </article>
+        <article class="tile span-2">
+          <span class="num">04</span>
+          <h3>Security reviews</h3>
+          <p>We handle questionnaires, architecture reviews, and data residency so procurement isn't the bottleneck.</p>
+        </article>
+        <article class="tile span-2">
+          <span class="num">05</span>
+          <h3>Field-to-product loop</h3>
+          <p>Structured insight reports that show your PMs which custom builds should become features.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="block" id="process" style="background:var(--surface);border-block:1px solid var(--line)">
+    <div class="wrap">
+      <div class="head center">
+        <span class="kicker">Process</span>
+        <h2>From kickoff to handoff in four phases.</h2>
+        <p>Every engagement follows the same playbook, so outcomes stay predictable across accounts.</p>
+      </div>
+      <ol class="timeline" style="list-style:none;margin:0;padding:0">
+        <li><span class="when">Week 1</span><h4>Scope</h4><p>Map the customer's systems, stakeholders, and definition of "live." Agree on a written success plan.</p></li>
+        <li><span class="when">Week 1–2</span><h4>Embed</h4><p>The FDE gets access, joins rituals, and ships a first small win to build trust fast.</p></li>
+        <li><span class="when">Week 2–6</span><h4>Build</h4><p>Integrations and workflows ship in weekly increments, demoed to both teams.</p></li>
+        <li><span class="when">Final week</span><h4>Hand off</h4><p>Runbooks, monitoring, and a clean handoff to your customer success team.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Metrics -->
+  <section class="block">
+    <div class="wrap">
+      <div class="metrics">
+        <h2>Results our clients measure in renewals.</h2>
+        <div class="grid">
+          <div><strong>3.2×</strong><span>Faster pilot-to-production</span></div>
+          <div><strong>94%</strong><span>Of pilots converted to contract</span></div>
+          <div><strong>+38%</strong><span>Average net revenue retention</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="block" style="padding-top:0">
+    <div class="wrap quote">
+      <blockquote>"Our Fieldline engineer was in our customer's war room by Tuesday. Six weeks later, a pilot that had stalled for two quarters became our largest contract of the year."</blockquote>
+      <cite><b>Priya Raman</b>Head of Solutions, Quantra Analytics</cite>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="block" id="pricing" style="padding-top:0">
+    <div class="wrap">
+      <div class="head center">
+        <span class="kicker">Pricing</span>
+        <h2>Engagements sized to the deal.</h2>
+        <p>Transparent rates, no long-term lock-in. Scale pods up or down each month.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3>Sprint</h3>
+          <p class="for">For a single pilot or proof of concept</p>
+          <div class="price">$12k <small>/ 2 weeks</small></div>
+          <ul>
+            <li>1 senior FDE, embedded</li>
+            <li>One scoped integration</li>
+            <li>Daily async updates</li>
+            <li>Handoff documentation</li>
+          </ul>
+          <a href="#contact" class="btn btn-line">Book a sprint</a>
+        </div>
+        <div class="plan pop">
+          <span class="badge">Most chosen</span>
+          <h3>Pod</h3>
+          <p class="for">For concurrent enterprise rollouts</p>
+          <div class="price">$28k <small>/ month</small></div>
+          <ul>
+            <li>2 FDEs + engagement lead</li>
+            <li>Up to 3 active accounts</li>
+            <li>Weekly field-insight report</li>
+            <li>Security review support</li>
+          </ul>
+          <a href="#contact" class="btn btn-brand">Start a pod</a>
+        </div>
+        <div class="plan">
+          <h3>Program</h3>
+          <p class="for">For building an FDE function at scale</p>
+          <div class="price">Custom</div>
+          <ul>
+            <li>Dedicated multi-pod team</li>
+            <li>Hiring &amp; playbook design</li>
+            <li>Custom SLAs and reporting</li>
+            <li>Quarterly executive reviews</li>
+          </ul>
+          <a href="#contact" class="btn btn-line">Talk to us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="head center">
+        <span class="kicker">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>What exactly is a Forward Deployed Engineer?</summary>
+          <p>An FDE is a senior software engineer who works directly with your customers rather than on your core product. They write production code in the customer's environment to integrate, configure, and extend your platform for that customer's needs.</p>
+        </details>
+        <details>
+          <summary>Do your engineers represent our brand?</summary>
+          <p>Yes. FDEs operate under your company name, use your email domain if you prefer, and follow your customer communication standards.</p>
+        </details>
+        <details>
+          <summary>How quickly can an engineer start?</summary>
+          <p>Most engagements start within 5–10 business days of a signed scope, depending on security clearance and access requirements.</p>
+        </details>
+        <details>
+          <summary>Who owns the code we build?</summary>
+          <p>You do, or your customer does, as agreed in the scope. We assign all IP created during the engagement.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="wrap" id="contact">
+    <div class="cta">
+      <div>
+        <h2>Have a deal stuck in pilot?</h2>
+        <p>Tell us about the account. We'll reply within one business day with a proposed scope and an engineer match.</p>
+      </div>
+      <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thanks — we\'ll be in touch';">
+        <label class="skip" for="email">Work email</label>
+        <input id="email" type="email" placeholder="you@company.com" required>
+        <label class="skip" for="company">Company</label>
+        <input id="company" type="text" placeholder="Company name">
+        <button class="btn" type="submit">Request a scoping call</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#" class="brand"><span class="brand-mark">FL</span>Fieldline</a>
+        <p>Forward Deployed Engineering for B2B software companies selling into the enterprise.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul><li><a href="#services">Deployment pods</a></li><li><a href="#services">Integrations</a></li><li><a href="#services">AI rollout</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Case studies</a></li></ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul><li><a href="mailto:hello@fieldline.example">hello@fieldline.example</a></li><li><a href="#faq">FAQ</a></li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Fieldline. All rights reserved.</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
