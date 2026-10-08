@@ -1,0 +1,35 @@
+FDE STUDIO — LET’S BUILD SOMETHING THAT MATTERS
+Project conversation starter
+
+Use this brief to prepare for a conversation with your engineering partner.
+Short, imperfect answers are a great place to start.
+
+1. YOUR TEAM
+Company / project:
+Your name and role:
+Who will be involved?
+
+2. THE CHALLENGE
+What problem are you trying to solve?
+Who experiences this problem?
+How are you handling it today?
+
+3. THE OUTCOME
+What would a successful solution make possible?
+How will you measure its impact?
+
+4. THE STARTING POINT
+Existing product, infrastructure, and tech stack:
+Relevant data sources or integrations:
+Constraints we should know about:
+
+5. THE ENGAGEMENT
+Where do you need the most help?
+[ ] Product engineering
+[ ] Applied AI and automation
+[ ] Systems and infrastructure
+[ ] Help defining the right approach
+
+Ideal timeline:
+Budget range (optional):
+Anything else we should know?
