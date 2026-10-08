@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VORTEX FDE | Forward Deployed Engineering Services</title>
+  <meta name="description" content="Elite Forward Deployed Engineers embedded directly into your codebase, VPC, and field operations to ship mission-critical AI, distributed data, and high-stakes infrastructure.">
+  <meta name="keywords" content="Forward Deployed Engineer, FDE services, AI deployment, enterprise engineering, embedded software engineers, distributed systems, Palantir FDE alternative">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="VORTEX FDE | Forward Deployed Engineering Services">
+  <meta property="og:description" content="Elite Forward Deployed Engineers embedded directly inside your core infrastructure to build and deploy high-stakes AI and data systems.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/fde_mission_control.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='16,2 30,26 2,26' fill='none' stroke='%2300F2FE' stroke-width='3'/><circle cx='16' cy='18' r='4' fill='%236366F1'/></svg>">
+</head>
+<body>
+
+  <!-- Ambient Animated Background Canvas -->
+  <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation -->
+  <header class="site-header" id="site-header">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" id="brand-logo-link" aria-label="VORTEX FDE Home">
+        <div class="logo-mark">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="16,3 29,27 3,27" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linejoin="round"/>
+            <polygon points="16,10 23,23 9,23" fill="url(#logo-inner-grad)" opacity="0.6"/>
+            <circle cx="16" cy="18" r="2.5" fill="#00F2FE" />
+            <defs>
+              <linearGradient id="logo-grad" x1="3" y1="3" x2="29" y2="27" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00F2FE" />
+                <stop offset="1" stop-color="#7928CA" />
+              </linearGradient>
+              <linearGradient id="logo-inner-grad" x1="9" y1="10" x2="23" y2="23" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#4FACFE" />
+                <stop offset="1" stop-color="#00F2FE" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">VORTEX<span class="brand-dot">.</span>FDE</span>
+          <span class="brand-tagline">FORWARD DEPLOYED OPS</span>
+        </div>
+      </a>
+
+      <!-- Live Operational Pill -->
+      <div class="operational-status-pill" id="operational-status-badge">
+        <span class="pulse-indicator"></span>
+        <span class="status-text"><strong>18 PODS EMBEDDED</strong> IN PRODUCTION</span>
+      </div>
+
+      <!-- Desktop Nav Links -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="#why-fde" class="nav-link">Why FDE</a>
+        <a href="#capabilities" class="nav-link">Capabilities</a>
+        <a href="#architecture" class="nav-link">Architecture</a>
+        <a href="#calculator" class="nav-link">Pod Configurator</a>
+        <a href="#case-studies" class="nav-link">Battle Records</a>
+        <a href="#security" class="nav-link">Security & Specs</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <!-- Action Button & Mobile Toggle -->
+      <div class="header-actions">
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-quick-terminal" title="Toggle Live Telemetry Terminal">
+          <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+          </svg>
+          <span>CLI</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" id="header-dispatch-btn" onclick="openDispatchModal()">
+          <span>Deploy a Pod</span>
+          <svg class="arrow-icon" viewBox="0 0 16 16" fill="currentColor">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+          </svg>
+        </button>
+        <button type="button" class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="mobile-drawer-content">
+        <nav class="mobile-nav">
+          <a href="#why-fde" class="mobile-nav-link" onclick="closeMobileMenu()">Why FDE Model</a>
+          <a href="#capabilities" class="mobile-nav-link" onclick="closeMobileMenu()">Capabilities</a>
+          <a href="#architecture" class="mobile-nav-link" onclick="closeMobileMenu()">Architecture & Stack</a>
+          <a href="#calculator" class="mobile-nav-link" onclick="closeMobileMenu()">Pod Configurator & ROI</a>
+          <a href="#case-studies" class="mobile-nav-link" onclick="closeMobileMenu()">Battle Records</a>
+          <a href="#security" class="mobile-nav-link" onclick="closeMobileMenu()">Security & Compliance</a>
+          <a href="#faq" class="mobile-nav-link" onclick="closeMobileMenu()">FAQ</a>
+        </nav>
+        <div class="mobile-drawer-footer">
+          <button type="button" class="btn btn-primary btn-block" onclick="closeMobileMenu(); openDispatchModal();">
+            Deploy an FDE Pod Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-bg-glow"></div>
+      <div class="section-container hero-container">
+        <div class="hero-content">
+          <!-- Top Tag -->
+          <div class="hero-tag-wrap">
+            <span class="hero-tag">
+              <span class="tag-icon">⚡</span>
+              <span>FORWARD DEPLOYED ENGINEERING (FDE) SERVICES</span>
+              <span class="tag-divider">|</span>
+              <span class="tag-accent">ZERO SHELFWARE GUARANTEE</span>
+            </span>
+          </div>
+
+          <!-- Main Headline -->
+          <h1 class="hero-title">
+            We Don't Hand Over Slide Decks.<br>
+            <span class="gradient-text">We Embed, Architect & Ship In Production.</span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="hero-subtitle">
+            Deploy elite, battle-hardened software engineers and AI architects directly into your repositories, sovereign VPCs, and mission-critical edge pipelines. From day one, we commit code, unblock bottlenecks, and turn experimental models into enterprise reality.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="hero-cta-group">
+            <button type="button" class="btn btn-primary btn-lg" id="hero-cta-dispatch" onclick="scrollToConfigurator()">
+              <span>Configure Your FDE Pod</span>
+              <svg class="arrow-icon" viewBox="0 0 16 16" fill="currentColor">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+            </button>
+            <a href="#interactive-terminal" class="btn btn-secondary btn-lg" id="hero-cta-live-demo">
+              <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+              </svg>
+              <span>Explore Live Telemetry</span>
+            </a>
+          </div>
+
+          <!-- Quick Trust Badges -->
+          <div class="hero-trust-bar">
+            <div class="trust-item">
+              <span class="trust-val">48 Hrs</span>
+              <span class="trust-label">Avg. Time to 1st Production PR</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+              <span class="trust-val">Staff & Principal</span>
+              <span class="trust-label">Ex-Palantir, FAANG, OpenAI Pods</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+              <span class="trust-val">DoD IL5 & SOC 2</span>
+              <span class="trust-label">Air-Gapped Clearance Ready</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual: Mission Control Interactive Terminal -->
+        <div class="hero-visual" id="interactive-terminal">
+          <div class="terminal-window">
+            <div class="terminal-titlebar">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="terminal-tabs" role="tablist">
+                <button type="button" class="terminal-tab active" data-scenario="ai" role="tab" aria-selected="true" id="tab-scenario-ai">
+                  <span class="tab-dot"></span> vllm-cluster-prod.tf
+                </button>
+                <button type="button" class="terminal-tab" data-scenario="data" role="tab" aria-selected="false" id="tab-scenario-data">
+                  <span class="tab-dot"></span> flink-stream-opt.rs
+                </button>
+                <button type="button" class="terminal-tab" data-scenario="airgap" role="tab" aria-selected="false" id="tab-scenario-airgap">
+                  <span class="tab-dot"></span> enclave-sovereign.yaml
+                </button>
+              </div>
+              <div class="terminal-actions">
+                <span class="terminal-badge">LIVE POD: ECHO-7</span>
+              </div>
+            </div>
+
+            <!-- Terminal Console Body -->
+            <div class="terminal-body" id="terminal-body">
+              <pre class="terminal-content" id="terminal-content" tabindex="0" aria-label="Live Engineering Terminal Output"></pre>
+              <div class="terminal-input-row">
+                <span class="terminal-prompt">vortex@fde-pod-echo7:~$</span>
+                <span class="terminal-cmd" id="terminal-current-cmd"></span>
+                <span class="terminal-cursor"></span>
+              </div>
+            </div>
+
+            <!-- Interactive Terminal Controls -->
+            <div class="terminal-footer">
+              <div class="terminal-controls-label">Interactive Actions:</div>
+              <div class="terminal-button-group">
+                <button type="button" class="term-btn" onclick="runScenarioCommand('benchmark')">⚡ Run Latency Benchmark</button>
+                <button type="button" class="term-btn" onclick="runScenarioCommand('verify_airgap')">🛡️ Verify Enclave mTLS</button>
+                <button type="button" class="term-btn" onclick="runScenarioCommand('scale_pod')">🚀 Scale Inference Pod</button>
+                <button type="button" class="term-btn term-btn-clear" onclick="clearTerminalLogs()">Clear</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Metric Chip Over Visual -->
+          <div class="floating-chip chip-latency">
+            <div class="chip-icon">⚡</div>
+            <div class="chip-info">
+              <span class="chip-title">P99 Inference Latency</span>
+              <span class="chip-stat">1,480ms → <span class="highlight-green">42ms</span> (-97.1%)</span>
+            </div>
+          </div>
+          <div class="floating-chip chip-clearance">
+            <div class="chip-icon">🛡️</div>
+            <div class="chip-info">
+              <span class="chip-title">Security Enclave</span>
+              <span class="chip-stat">Zero-Trust Air-Gap Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METRICS & IMPACT BANNER -->
+    <section class="metrics-banner" id="impact-metrics">
+      <div class="section-container">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-number" data-target="48">0</div>
+            <span class="metric-unit">Hours</span>
+            <div class="metric-label">To First Production Pull Request</div>
+            <p class="metric-desc">We ingest the repo, reproduce the failure state, and merge working fixes within 48 hours of onboarding.</p>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number" data-target="680">0</div>
+            <span class="metric-unit">$M+</span>
+            <div class="metric-label">Enterprise Value Delivered</div>
+            <p class="metric-desc">Validated ROI calculated from accelerated time-to-market, cloud cost reductions, and unlocked AI revenue.</p>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number" data-target="99.99">0</div>
+            <span class="metric-unit">%</span>
+            <div class="metric-label">Production SLA Uptime</div>
+            <p class="metric-desc">High-concurrency systems architected with automatic failover, self-healing circuits, and multi-region resilience.</p>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number" data-target="100">0</div>
+            <span class="metric-unit">%</span>
+            <div class="metric-label">Client IP & Code Ownership</div>
+            <p class="metric-desc">Zero vendor lock-in. Every commit, architecture specification, and pipeline belongs exclusively to you.</p>
+          </div>
+        </div>
+
+        <!-- Ecosystem Tech Stacks Bar -->
+        <div class="tech-stack-strip">
+          <div class="strip-label">INTEGRATED ACROSS MISSION-CRITICAL INFRASTRUCTURE:</div>
+          <div class="tech-tags-marquee">
+            <span class="tech-tag">CUDA & TensorRT-LLM</span>
+            <span class="tech-tag">vLLM & Triton Server</span>
+            <span class="tech-tag">Apache Flink & Kafka</span>
+            <span class="tech-tag">Rust & Go Low-Latency</span>
+            <span class="tech-tag">Kubernetes & Ray Core</span>
+            <span class="tech-tag">AWS GovCloud & C2S</span>
+            <span class="tech-tag">Snowflake & Iceberg</span>
+            <span class="tech-tag">NVIDIA Jetson Edge</span>
+            <span class="tech-tag">LangGraph & LlamaIndex</span>
+            <span class="tech-tag">Postgres & pgvector</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY FDE SECTION: CONSULTING VS FDE MODEL -->
+    <section class="section comparison-section" id="why-fde">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <div class="section-eyebrow">THE OPERATIONAL SHIFT</div>
+          <h2 class="section-title">The Forward Deployed Difference</h2>
+          <p class="section-subtitle">
+            Traditional enterprise consulting sells advisory hours and leaves behind shelfware. Forward Deployed Engineers sit shoulder-to-shoulder with your engineering leads in the trenches.
+          </p>
+        </div>
+
+        <div class="comparison-grid">
+          <!-- Traditional Column -->
+          <div class="comparison-card traditional-card">
+            <div class="comparison-badge">TRADITIONAL IT CONSULTING</div>
+            <h3 class="comp-title">Theoretical Advice & Billable Delays</h3>
+            <ul class="comp-list">
+              <li>
+                <span class="cross-icon">✕</span>
+                <div>
+                  <strong>Endless Discovery Sprints:</strong>
+                  Spend 6 to 12 weeks producing 150-page PowerPoint decks before a single line of code is written.
+                </div>
+              </li>
+              <li>
+                <span class="cross-icon">✕</span>
+                <div>
+                  <strong>Bait-and-Switch Staffing:</strong>
+                  Pitched by senior partners, but execution is handed off to junior off-shore contractors who lack deep domain context.
+                </div>
+              </li>
+              <li>
+                <span class="cross-icon">✕</span>
+                <div>
+                  <strong>Disconnected from Git:</strong>
+                  They don't have commit rights, can't deploy to staging, and never get their hands dirty debugging production edge cases.
+                </div>
+              </li>
+              <li>
+                <span class="cross-icon">✕</span>
+                <div>
+                  <strong>Shelfware Handover:</strong>
+                  Deliver proprietary monolithic frameworks that break the moment the consulting engagement concludes.
+                </div>
+              </li>
+            </ul>
+            <div class="comp-footer traditional-footer">
+              <span class="comp-metric-label">Outcome:</span>
+              <span class="comp-metric-val">Months lost, zero deployed software</span>
+            </div>
+          </div>
+
+          <!-- VORTEX FDE Column -->
+          <div class="comparison-card vortex-card">
+            <div class="card-glow"></div>
+            <div class="comparison-badge vortex-badge">⚡ VORTEX FORWARD DEPLOYED PODS</div>
+            <h3 class="comp-title">Embedded Execution at the Point of Impact</h3>
+            <ul class="comp-list">
+              <li>
+                <span class="check-icon">✓</span>
+                <div>
+                  <strong>Day-1 Repo Access & Triage:</strong>
+                  We pass your security vetting, pull down your repositories, set up dev environments, and begin profiling the stack immediately.
+                </div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div>
+                  <strong>Principal & Staff Level Only:</strong>
+                  Every FDE pod member has 8+ years building high-throughput distributed systems, generative AI engines, or defense tech.
+                </div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div>
+                  <strong>Production Commits & PRs:</strong>
+                  We write modular code in your language, submit clean pull requests to your CI/CD, and participate in your team's code reviews.
+                </div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div>
+                  <strong>Complete Knowledge Transfer:</strong>
+                  We leave your internal teams with production-grade documentation, integration tests, runbooks, and architectural mastery.
+                </div>
+              </li>
+            </ul>
+            <div class="comp-footer vortex-footer">
+              <span class="comp-metric-label">Outcome:</span>
+              <span class="comp-metric-val highlight-cyan">Working production systems shipped in weeks</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE CAPABILITIES GRID -->
+    <section class="section capabilities-section" id="capabilities">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-eyebrow">FIELD EXPERTISE</div>
+          <h2 class="section-title">Forward Deployed Capabilities</h2>
+          <p class="section-subtitle">
+            Our multi-disciplinary engineering pods bridge the gap between bleeding-edge research and unyielding enterprise reliability.
+          </p>
+        </div>
+
+        <div class="capabilities-grid">
+          <!-- Card 1 -->
+          <div class="capability-card" onclick="openCapabilityModal('genai')">
+            <div class="cap-header">
+              <div class="cap-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                </svg>
+              </div>
+              <span class="cap-index">01</span>
+            </div>
+            <h3 class="cap-title">Enterprise GenAI & Agentic Systems</h3>
+            <p class="cap-desc">
+              Move beyond fragile demos. We embed to build deterministic multi-agent workflows, fine-tune domain LLMs, integrate hybrid GraphRAG, and eliminate hallucinations with rigorous evaluation harnesses.
+            </p>
+            <div class="cap-tags">
+              <span>LangGraph</span>
+              <span>vLLM</span>
+              <span>LoRA Fine-Tuning</span>
+              <span>Vector Hybrid</span>
+            </div>
+            <div class="cap-action">
+              <span>Inspect Architecture Blueprint</span>
+              <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="capability-card" onclick="openCapabilityModal('streaming')">
+            <div class="cap-header">
+              <div class="cap-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+              </div>
+              <span class="cap-index">02</span>
+            </div>
+            <h3 class="cap-title">Petabyte Streaming & Distributed Data</h3>
+            <p class="cap-desc">
+              When standard pipelines choke on volume, our FDEs redesign low-latency stream processing architectures using Flink, Kafka, and ClickHouse. Sub-50ms analytical queries under millions of events per second.
+            </p>
+            <div class="cap-tags">
+              <span>Apache Flink</span>
+              <span>Kafka</span>
+              <span>Apache Iceberg</span>
+              <span>ClickHouse</span>
+            </div>
+            <div class="cap-action">
+              <span>Inspect Architecture Blueprint</span>
+              <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="capability-card" onclick="openCapabilityModal('airgap')">
+            <div class="cap-header">
+              <div class="cap-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <span class="cap-index">03</span>
+            </div>
+            <h3 class="cap-title">Air-Gapped & Sovereign Cloud Deployments</h3>
+            <p class="cap-desc">
+              Built for defense, national security, and strict healthcare compliance. We stand up offline, self-contained AI clusters in isolated VPCs, on-prem bare metal, or GovCloud with zero outbound data leakage.
+            </p>
+            <div class="cap-tags">
+              <span>DoD IL-5</span>
+              <span>FedRAMP High</span>
+              <span>mTLS Zero-Trust</span>
+              <span>AWS GovCloud</span>
+            </div>
+            <div class="cap-action">
+              <span>Inspect Architecture Blueprint</span>
+              <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="capability-card" onclick="openCapabilityModal('latency')">
+            <div class="cap-header">
+              <div class="cap-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <span class="cap-index">04</span>
+            </div>
+            <h3 class="cap-title">Kernel Optimization & Latency Hardening</h3>
+            <p class="cap-desc">
+              Slash compute bills and response times. Our systems specialists write custom CUDA kernels, implement FlashAttention-3 optimizations, rewrite bottlenecks in Rust, and tune memory allocation to squeeze maximum TPS.
+            </p>
+            <div class="cap-tags">
+              <span>Custom CUDA</span>
+              <span>Rust Core</span>
+              <span>TensorRT</span>
+              <span>GPU Memory Paging</span>
+            </div>
+            <div class="cap-action">
+              <span>Inspect Architecture Blueprint</span>
+              <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="capability-card" onclick="openCapabilityModal('modernization')">
+            <div class="cap-header">
+              <div class="cap-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <span class="cap-index">05</span>
+            </div>
+            <h3 class="cap-title">Surgical Monolith Modernization</h3>
+            <p class="cap-desc">
+              No reckless rewrites that stall the business. We employ the Strangler Fig pattern, CDC pipelines, and event-driven micro-gateways to hollow out 15-year-old monolithic engines without a second of downtime.
+            </p>
+            <div class="cap-tags">
+              <span>Strangler Fig</span>
+              <span>Debezium CDC</span>
+              <span>gRPC Gateway</span>
+              <span>Zero Downtime</span>
+            </div>
+            <div class="cap-action">
+              <span>Inspect Architecture Blueprint</span>
+              <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="capability-card" onclick="openCapabilityModal('edge')">
+            <div class="cap-header">
+              <div class="cap-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+                  <rect x="9" y="9" width="6" height="6"/>
+                  <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
+                  <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
+                  <line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/>
+                  <line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
+                </svg>
+              </div>
+              <span class="cap-index">06</span>
+            </div>
+            <h3 class="cap-title">Tactical Edge & Embedded Robotics AI</h3>
+            <p class="cap-desc">
+              Deploying computer vision and quantized LLM intelligence to edge devices (NVIDIA Jetson, sensor arrays, field hardware). Resilient to intermittent connectivity, power throttling, and harsh physical operating environments.
+            </p>
+            <div class="cap-tags">
+              <span>NVIDIA Jetson</span>
+              <span>INT8 Quantization</span>
+              <span>Edge Triton</span>
+              <span>ROS2 Robotics</span>
+            </div>
+            <div class="cap-action">
+              <span>Inspect Architecture Blueprint</span>
+              <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE SYSTEM ARCHITECTURE BLUEPRINT EXPLORER -->
+    <section class="section arch-section" id="architecture">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <div class="section-eyebrow">FIELD TOPOLOGY</div>
+          <h2 class="section-title">The VORTEX Embedded Architecture</h2>
+          <p class="section-subtitle">
+            Click on any component in the topology map below to inspect how our FDE Pod integrates seamlessly into your perimeter without compromising zero-trust policies.
+          </p>
+        </div>
+
+        <div class="arch-explorer-card">
+          <!-- Interactive Topology Map -->
+          <div class="topology-canvas-wrap">
+            <div class="topology-node-grid">
+              
+              <!-- Node 1: Client Perimeter -->
+              <div class="topo-node active" data-node="perimeter" onclick="selectTopoNode('perimeter')">
+                <div class="node-status-dot"></div>
+                <div class="node-icon">🏢</div>
+                <div class="node-title">Client VPC Perimeter</div>
+                <div class="node-sub">Zero-Trust Bastion</div>
+              </div>
+
+              <div class="topo-connector">
+                <span class="conn-line"></span>
+                <span class="conn-pulse"></span>
+              </div>
+
+              <!-- Node 2: FDE Pod Gateway -->
+              <div class="topo-node" data-node="fde-pod" onclick="selectTopoNode('fde-pod')">
+                <div class="node-status-dot"></div>
+                <div class="node-icon">⚡</div>
+                <div class="node-title">VORTEX FDE Pod</div>
+                <div class="node-sub">Staff/Principal Eng</div>
+              </div>
+
+              <div class="topo-connector">
+                <span class="conn-line"></span>
+                <span class="conn-pulse"></span>
+              </div>
+
+              <!-- Node 3: Real-Time Data Pipeline -->
+              <div class="topo-node" data-node="data-plane" onclick="selectTopoNode('data-plane')">
+                <div class="node-status-dot"></div>
+                <div class="node-icon">🌊</div>
+                <div class="node-title">Distributed Data Plane</div>
+                <div class="node-sub">Flink / Iceberg / ClickHouse</div>
+              </div>
+
+              <div class="topo-connector">
+                <span class="conn-line"></span>
+                <span class="conn-pulse"></span>
+              </div>
+
+              <!-- Node 4: High-Performance AI Inference -->
+              <div class="topo-node" data-node="ai-cluster" onclick="selectTopoNode('ai-cluster')">
+                <div class="node-status-dot"></div>
+                <div class="node-icon">🧠</div>
+                <div class="node-title">AI Inference Cluster</div>
+                <div class="node-sub">vLLM / TensorRT Engine</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Node Details Panel -->
+          <div class="topo-details-panel" id="topo-details-panel">
+            <div class="topo-details-header">
+              <div class="badge-accent" id="topo-node-badge">SECURITY & PERIMETER</div>
+              <h3 class="topo-details-title" id="topo-node-title">Client VPC & Dedicated Bastion Ingress</h3>
+            </div>
+            <p class="topo-details-desc" id="topo-node-desc">
+              Our Forward Deployed Engineers do not require permanent credentials or external telemetry exfiltration. We operate exclusively through mutual TLS, customer-managed IAM roles, hardware-backed keys, and ephemeral jump hosts inside your dedicated sovereign environment.
+            </p>
+            <div class="topo-metrics-row">
+              <div class="topo-metric">
+                <span class="tm-label">Data Transit Protocol</span>
+                <span class="tm-val" id="topo-metric-1">mTLS 1.3 + WireGuard</span>
+              </div>
+              <div class="topo-metric">
+                <span class="tm-label">Compliance Clearance</span>
+                <span class="tm-val" id="topo-metric-2">SOC2 Type II / DoD IL-5</span>
+              </div>
+              <div class="topo-metric">
+                <span class="tm-label">Audit Logging</span>
+                <span class="tm-val" id="topo-metric-3">100% Immutable CloudTrail</span>
+              </div>
+            </div>
+            <div class="topo-cta-row">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="runScenarioCommand('verify_airgap')">
+                <span>Run mTLS Handshake Test</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE 4-PHASE DEPLOYMENT PROTOCOL -->
+    <section class="section protocol-section" id="protocol">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <div class="section-eyebrow">TACTICAL PLAYBOOK</div>
+          <h2 class="section-title">The 4-Phase Deployment Lifecycle</h2>
+          <p class="section-subtitle">
+            How a VORTEX Forward Deployed Engineering Pod moves from initial security clearance to delivering hardened production releases.
+          </p>
+        </div>
+
+        <div class="protocol-timeline">
+          <!-- Step 1 -->
+          <div class="protocol-step">
+            <div class="step-num">01</div>
+            <div class="step-card">
+              <div class="step-time">HOURS 0 – 72</div>
+              <h3 class="step-title">Perimeter Infiltration & Stack Profiling</h3>
+              <p class="step-desc">
+                We sign standard enterprise mutual NDAs, complete security onboarding, pull repositories, and spin up an exact isolated replica of your production failure state in local staging.
+              </p>
+              <ul class="step-checklist">
+                <li>IAM & Hardware Token Configuration</li>
+                <li>Local Sandbox Environment Spin-up</li>
+                <li>System Architecture & Latency Profiling</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="protocol-step">
+            <div class="step-num">02</div>
+            <div class="step-card">
+              <div class="step-time">WEEK 1 – 2</div>
+              <h3 class="step-title">First Production PR & Critical Bottleneck Liquidation</h3>
+              <p class="step-desc">
+                We target the single most stubborn blocker stalling your product roadmap—whether that's a crashing vector index, a 12-second query, or an unstable LLM agent loop. We test and merge code.
+              </p>
+              <ul class="step-checklist">
+                <li>First peer-reviewed Pull Request merged</li>
+                <li>Automated regression suite integration</li>
+                <li>Telemetry and observability instrumentation</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="protocol-step">
+            <div class="step-num">03</div>
+            <div class="step-card">
+              <div class="step-time">WEEK 3 – 8</div>
+              <h3 class="step-title">Core Architecture Hardening & Scaling</h3>
+              <p class="step-desc">
+                The pod implements full-scale features: distributed stream pipelines, custom fine-tuned weights, horizontal scaling clusters, and air-gapped sovereign deployment harnesses.
+              </p>
+              <ul class="step-checklist">
+                <li>Load testing at 10x production capacity</li>
+                <li>Kernel level & memory allocation optimizations</li>
+                <li>99.999% failover testing under live chaos injection</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="protocol-step">
+            <div class="step-num">04</div>
+            <div class="step-card">
+              <div class="step-time">WEEK 9 – 12</div>
+              <h3 class="step-title">Knowledge Synthesis & Sovereign Handover</h3>
+              <p class="step-desc">
+                We codify everything: architecture decision records (ADRs), comprehensive runbooks, incident playbooks, and conduct intensive deep-dive workshops with your in-house engineering team.
+              </p>
+              <ul class="step-checklist">
+                <li>100% of IP, tests, and infra-as-code transferred</li>
+                <li>Recorded engineering knowledge transfer sessions</li>
+                <li>Post-deployment on-call shadow support</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE POD CONFIGURATOR & ROI CALCULATOR -->
+    <section class="section calculator-section" id="calculator">
+      <div class="section-container">
+        <div class="calc-card">
+          <div class="calc-header text-center">
+            <div class="section-eyebrow">INTERACTIVE ESTIMATOR</div>
+            <h2 class="section-title">Configure Your FDE Pod & Calculate Velocity</h2>
+            <p class="section-subtitle">
+              Select your technical focus, pod composition, and deployment duration to preview engineering velocity, estimated weeks saved, and deployment readiness.
+            </p>
+          </div>
+
+          <div class="calc-grid">
+            <!-- Left Controls -->
+            <div class="calc-controls">
+              <!-- Field 1: Technical Focus -->
+              <div class="form-group">
+                <label class="calc-label" for="calc-domain">1. Select Mission Domain:</label>
+                <div class="pill-selector" id="domain-selector">
+                  <button type="button" class="pill-option active" data-value="genai">Generative AI & Agents</button>
+                  <button type="button" class="pill-option" data-value="streaming">High-Volume Data & Streaming</button>
+                  <button type="button" class="pill-option" data-value="airgap">Air-Gapped / Defense</button>
+                  <button type="button" class="pill-option" data-value="modern">Legacy Core Modernization</button>
+                </div>
+              </div>
+
+              <!-- Field 2: Pod Composition -->
+              <div class="form-group">
+                <label class="calc-label">2. Select Pod Strike Force:</label>
+                <div class="pod-options-grid">
+                  <div class="pod-option active" data-pod="tactical" onclick="selectPodTier('tactical')">
+                    <div class="pod-option-header">
+                      <span class="pod-name">Tactical Pod</span>
+                      <span class="pod-badge">POPULAR</span>
+                    </div>
+                    <div class="pod-spec">2 Staff FDEs + 1 Cloud/Infra Architect</div>
+                    <div class="pod-ideal">Ideal for shipping high-stakes MVPs into production.</div>
+                  </div>
+
+                  <div class="pod-option" data-pod="strike" onclick="selectPodTier('strike')">
+                    <div class="pod-option-header">
+                      <span class="pod-name">Strike Force</span>
+                      <span class="pod-badge">HIGH VELOCITY</span>
+                    </div>
+                    <div class="pod-spec">4 Principal FDEs + 1 AI Lead + 1 DevOps Lead</div>
+                    <div class="pod-ideal">Full platform overhaul or mission-critical enterprise replatforming.</div>
+                  </div>
+
+                  <div class="pod-option" data-pod="scout" onclick="selectPodTier('scout')">
+                    <div class="pod-option-header">
+                      <span class="pod-name">Scout Specialist</span>
+                      <span class="pod-badge">FOCUSED</span>
+                    </div>
+                    <div class="pod-spec">1 Principal FDE Specialist</div>
+                    <div class="pod-ideal">Unblocking a critical algorithmic or latency bottleneck.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Field 3: Timeline Slider -->
+              <div class="form-group">
+                <div class="slider-header">
+                  <label class="calc-label" for="duration-slider">3. Embedded Duration:</label>
+                  <span class="slider-val" id="slider-duration-display">12 Weeks (Full Prod Rollout)</span>
+                </div>
+                <input type="range" class="range-slider" id="duration-slider" min="4" max="24" step="2" value="12" oninput="updateCalculator()">
+                <div class="slider-ticks">
+                  <span>4 Wks (Sprint)</span>
+                  <span>12 Wks (Production Launch)</span>
+                  <span>24 Wks (Enterprise Overhaul)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Results Card -->
+            <div class="calc-results-card">
+              <div class="results-header">
+                <div class="results-badge">DEPLOYMENT TELEMETRY ESTIMATE</div>
+                <div class="results-velocity" id="res-velocity-score">18.4x</div>
+                <div class="results-velocity-sub">Faster Time-to-Production vs Traditional Advisory</div>
+              </div>
+
+              <div class="results-stats-list">
+                <div class="res-stat-row">
+                  <span class="res-stat-label">Estimated Weeks Saved:</span>
+                  <strong class="res-stat-val highlight-cyan" id="res-weeks-saved">16 – 22 Weeks</strong>
+                </div>
+                <div class="res-stat-row">
+                  <span class="res-stat-label">Production Pull Requests:</span>
+                  <strong class="res-stat-val" id="res-commits">140+ Merged PRs</strong>
+                </div>
+                <div class="res-stat-row">
+                  <span class="res-stat-label">Target Latency / Throughput:</span>
+                  <strong class="res-stat-val" id="res-throughput">&lt; 50ms P99 (10k+ TPS)</strong>
+                </div>
+                <div class="res-stat-row">
+                  <span class="res-stat-label">Security Clearance:</span>
+                  <strong class="res-stat-val" id="res-security">SOC2 / GovCloud Ready</strong>
+                </div>
+              </div>
+
+              <div class="res-pod-summary">
+                <div class="res-summary-label">Recommended Pod Deployment:</div>
+                <div class="res-summary-text" id="res-pod-text">
+                  Tactical Pod (2 Staff FDEs + 1 Infra Architect) for 12 weeks embedded sprint.
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-primary btn-block" id="btn-calc-request" onclick="openDispatchModalWithPreload()">
+                <span>Request Dispatch For This Pod</span>
+                <svg class="arrow-icon" viewBox="0 0 16 16" fill="currentColor">
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES & BATTLE RECORDS -->
+    <section class="section case-studies-section" id="case-studies">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-eyebrow">PRODUCTION ENGAGEMENTS</div>
+          <h2 class="section-title">Battle Records From The Field</h2>
+          <p class="section-subtitle">
+            Explore verified case studies of how our Forward Deployed Engineers stepped into complex enterprise codebases and delivered high-impact software.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="case-filters" role="tablist">
+          <button type="button" class="filter-btn active" data-filter="all" onclick="filterCases('all')">All Engagements</button>
+          <button type="button" class="filter-btn" data-filter="fintech" onclick="filterCases('fintech')">Fintech & Quant</button>
+          <button type="button" class="filter-btn" data-filter="defense" onclick="filterCases('defense')">Defense & GovTech</button>
+          <button type="button" class="filter-btn" data-filter="health" onclick="filterCases('health')">BioTech & Health</button>
+        </div>
+
+        <div class="case-studies-grid">
+          <!-- Case 1: Fintech -->
+          <article class="case-card" data-category="fintech">
+            <div class="case-media">
+              <img src="assets/fde_neural_core.jpg" alt="Algorithmic Fraud Latency Optimization" class="case-img" loading="lazy">
+              <span class="case-category-badge">Tier-1 Investment Bank</span>
+            </div>
+            <div class="case-content">
+              <div class="case-metric-pill">P99: 680ms → 28ms | 120,000 TPS</div>
+              <h3 class="case-title">Real-Time Algorithmic Fraud Detection Under Extreme Volume</h3>
+              <p class="case-desc">
+                A legacy Java fraud detection pipeline was dropping transactions during flash volatility. Our 3-person FDE pod embedded on-site, rewrote critical scoring paths into optimized Rust kernels, and deployed Apache Flink stream state to achieve sub-30ms scoring at 120k TPS.
+              </p>
+              <div class="case-meta">
+                <span class="meta-tag">Rust</span>
+                <span class="meta-tag">Apache Flink</span>
+                <span class="meta-tag">Redis Cluster</span>
+                <span class="meta-time">6-Week Pod Engagement</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Case 2: Defense & GovTech -->
+          <article class="case-card" data-category="defense">
+            <div class="case-media">
+              <img src="assets/fde_mission_control.jpg" alt="Air-gapped Edge AI System for Autonomous Drones" class="case-img" loading="lazy">
+              <span class="case-category-badge">Autonomous Defense Systems</span>
+            </div>
+            <div class="case-content">
+              <div class="case-metric-pill">100% Air-Gapped | &lt;15W Power Envelope</div>
+              <h3 class="case-title">Sovereign Multimodal Object Intelligence on Edge NVIDIA Jetson</h3>
+              <p class="case-desc">
+                Tactical field units required vision-language situational intelligence without satellite connectivity. Our defense-cleared FDE pod implemented INT4 weight quantization, customized TensorRT engines, and built resilient fail-safe ROS2 pipelines running on embedded hardware.
+              </p>
+              <div class="case-meta">
+                <span class="meta-tag">DoD Clearance</span>
+                <span class="meta-tag">TensorRT Edge</span>
+                <span class="meta-tag">ROS2</span>
+                <span class="meta-time">10-Week Pod Engagement</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Case 3: BioTech & Health -->
+          <article class="case-card" data-category="health">
+            <div class="case-media">
+              <img src="assets/fde_engineers_pod.jpg" alt="Petabyte Genomic Pipeline Engineering" class="case-img" loading="lazy">
+              <span class="case-category-badge">Precision Oncology Platform</span>
+            </div>
+            <div class="case-content">
+              <div class="case-metric-pill">48 hrs → 19 mins Pipeline Compute Time</div>
+              <h3 class="case-title">Automating Petabyte Genomic Variant Sequencing Pipelines</h3>
+              <p class="case-desc">
+                Clinical diagnostics were bottlenecked by fragmented S3 batch jobs taking two full days per cohort. VORTEX FDEs re-architected the ingestion engine with Ray distributed computing and Apache Iceberg, accelerating variant identification down to 19 minutes with full HIPAA audit traceability.
+              </p>
+              <div class="case-meta">
+                <span class="meta-tag">Ray Distributed</span>
+                <span class="meta-tag">Apache Iceberg</span>
+                <span class="meta-tag">HIPAA Compliant</span>
+                <span class="meta-time">8-Week Pod Engagement</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXECUTIVE TESTIMONIALS -->
+    <section class="section testimonials-section" id="testimonials">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <div class="section-eyebrow">FIELD REVIEWS</div>
+          <h2 class="section-title">What Engineering Leaders Say</h2>
+          <p class="section-subtitle">
+            Trusted by CTOs, VPs of Engineering, and Principal Architects who have zero tolerance for consulting fluff.
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="quote-icon">“</div>
+            <p class="quote-text">
+              We had spent nine months with a top-four consulting firm who left us with a slide deck of recommendations we couldn't implement. VORTEX embedded two Staff FDEs who had our vector search cluster running in production in three weeks. They are genuinely world-class.
+            </p>
+            <div class="author-row">
+              <div class="author-avatar">MR</div>
+              <div class="author-info">
+                <div class="author-name">Marcus Reynolds</div>
+                <div class="author-role">Chief Technology Officer, Apex Securities</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="quote-icon">“</div>
+            <p class="quote-text">
+              Deploying LLM agents in a strict DoD IL5 air-gapped enclave is an operational nightmare. The VORTEX pod came with security clearances already cleared, understood our zero-trust requirements on minute one, and wrote flawless Infrastructure-as-Code.
+            </p>
+            <div class="author-row">
+              <div class="author-avatar">SL</div>
+              <div class="author-info">
+                <div class="author-name">Dr. Sarah Lindqvist</div>
+                <div class="author-role">VP of Autonomous Systems, Skynetix Defense</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="quote-icon">“</div>
+            <p class="quote-text">
+              The biggest surprise wasn't just the code speed; it was how much our junior and mid-level engineers learned working side-by-side with their Lead FDE. It elevated our entire organization's engineering culture.
+            </p>
+            <div class="author-row">
+              <div class="author-avatar">DK</div>
+              <div class="author-info">
+                <div class="author-name">David Koslov</div>
+                <div class="author-role">Head of Infrastructure, Helix Health</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECURITY, COMPLIANCE & LEGAL CLEARANCES -->
+    <section class="section security-section" id="security">
+      <div class="section-container">
+        <div class="security-card">
+          <div class="sec-header">
+            <div class="section-eyebrow">ZERO-TRUST ASSURANCE</div>
+            <h2 class="section-title">Enterprise Security & Compliance Framework</h2>
+            <p class="section-subtitle">
+              Every VORTEX Forward Deployed Engineer operates under strict enterprise governance, isolated credentials, and contractual IP protection.
+            </p>
+          </div>
+
+          <div class="security-badges-grid">
+            <div class="sec-badge-card">
+              <div class="sec-badge-icon">🛡️</div>
+              <h4 class="sec-badge-title">SOC 2 Type II Certified</h4>
+              <p class="sec-badge-desc">Annual independent third-party audits verifying our controls for security, availability, and confidentiality.</p>
+            </div>
+
+            <div class="sec-badge-card">
+              <div class="sec-badge-icon">🔒</div>
+              <h4 class="sec-badge-title">100% Client IP Ownership</h4>
+              <p class="sec-badge-desc">All code, documentation, architectures, and intellectual property remain 100% owned by your enterprise from commit 1.</p>
+            </div>
+
+            <div class="sec-badge-card">
+              <div class="sec-badge-icon">🇺🇸</div>
+              <h4 class="sec-badge-title">ITAR & GovCloud Ready</h4>
+              <p class="sec-badge-desc">Dedicated US-citizen engineering squads with active DoD clearances available for sovereign public sector programs.</p>
+            </div>
+
+            <div class="sec-badge-card">
+              <div class="sec-badge-icon">🏥</div>
+              <h4 class="sec-badge-title">HIPAA & BAA Compliant</h4>
+              <p class="sec-badge-desc">Complete administrative and technical controls for handling protected health information (PHI) with executed BAAs.</p>
+            </div>
+          </div>
+
+          <div class="sec-cta-banner">
+            <div class="sec-cta-text">
+              <strong>Need a custom security review or vendor risk assessment?</strong>
+              <span>Our InfoSec team provides full SIG Lite, SOC2 reports, and SOC pen tests within 24 hours.</span>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="openDispatchModal('security')">
+              Request Security Packet
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="section faq-section" id="faq">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <div class="section-eyebrow">COMMON INQUIRIES</div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">
+            Everything you need to know about how Forward Deployed Engineering services operate and deliver value.
+          </p>
+        </div>
+
+        <div class="faq-accordion" id="faq-accordion">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+              <span class="faq-question">What exactly is a Forward Deployed Engineer (FDE)?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-body">
+                A Forward Deployed Engineer (FDE) is a highly skilled technical operator who works directly "at the front line"—embedded within a client's environment, codebase, and infrastructure. Popularized by Palantir and now adopted by leading AI and enterprise firms, FDEs combine principal-level software engineering expertise with deep customer architecture insight. Unlike traditional consultants who deliver PowerPoint decks, FDEs write production code, debug edge cases in Git, and build working systems in production.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+              <span class="faq-question">How does an FDE pod differ from standard staff augmentation?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-body">
+                Staff augmentation simply adds individual heads to your backlog who take orders and require heavy onboarding management from your engineering leads. A VORTEX FDE Pod is an autonomous, outcome-oriented strike team composed of seasoned Principal/Staff engineers and architects. We take responsibility for end-to-end mission delivery—from architectural design and performance benchmarking to production cutover and internal team enablement.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+              <span class="faq-question">How quickly can a VORTEX pod start committing code?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-body">
+                Typically within 48 to 72 hours. Once standard mutual NDAs and environment access credentials (e.g. GitHub/GitLab, VPN/Bastion, AWS/GCP IAM roles) are provisioned, our engineers set up reproduction sandboxes, profile existing bottlenecks, and deliver their first reviewed production pull request in week one.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+              <span class="faq-question">Who owns the intellectual property and code written by FDEs?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-body">
+                Your company owns 100% of all intellectual property, source code, deployment scripts, documentation, and architecture diagrams created during the engagement. Everything is committed directly to your organization's private repositories from day one. There are zero licensing royalties or vendor lock-in.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+              <span class="faq-question">Can you work in strictly air-gapped or on-premises environments?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-body">
+                Yes. A significant portion of our work is conducted in sovereign defense clusters, DoD IL5/IL6 environments, and air-gapped healthcare datacenters. We provide US-citizen engineers with security clearances who adhere to strict zero-data-leakage protocols and isolated air-gapped development procedures.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+              <span class="faq-question">What happens when the pod engagement concludes?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-body">
+                During the final phase of every engagement, our team conducts thorough knowledge transfer sessions, provides exhaustive Architecture Decision Records (ADRs), creates comprehensive automated test suites, and provides shadow on-call support to ensure your in-house engineering team has 100% confidence running and extending the platform.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISPATCH REQUEST CALL TO ACTION SECTION -->
+    <section class="section cta-final-section" id="dispatch">
+      <div class="section-container">
+        <div class="cta-banner-box">
+          <div class="cta-banner-content">
+            <span class="cta-banner-tag">READY FOR IMMEDIATE FIELD EMBEDDING</span>
+            <h2 class="cta-banner-title">Stop Stalling on Critical Roadmap Deliverables.</h2>
+            <p class="cta-banner-desc">
+              Whether you need to launch a high-throughput LLM platform, rewrite a mission-critical streaming engine, or solve an intractable production bug, our Forward Deployed Engineers are ready to embed.
+            </p>
+            <div class="cta-banner-buttons">
+              <button type="button" class="btn btn-primary btn-lg" onclick="openDispatchModal()">
+                <span>Deploy an FDE Pod (48hr Onboarding)</span>
+                <svg class="arrow-icon" viewBox="0 0 16 16" fill="currentColor">
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+              </button>
+              <button type="button" class="btn btn-secondary btn-lg" onclick="scrollToConfigurator()">
+                <span>Adjust Pod Specifications</span>
+              </button>
+            </div>
+          </div>
+          <div class="cta-banner-stat">
+            <div class="stat-ring">
+              <div class="ring-value">48h</div>
+              <div class="ring-label">SLA Ready</div>
+            </div>
+            <div class="stat-note">Rapid Dispatch Protocol</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="section-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-mark">
+              <svg viewBox="0 0 32 32" fill="none">
+                <polygon points="16,3 29,27 3,27" stroke="#00F2FE" stroke-width="2.5"/>
+                <circle cx="16" cy="18" r="3" fill="#6366F1"/>
+              </svg>
+            </div>
+            <span class="brand-name">VORTEX<span class="brand-dot">.</span>FDE</span>
+          </div>
+          <p class="footer-desc">
+            Elite Forward Deployed Engineering services. Embedding Staff & Principal engineers directly into high-stakes codebases, defense systems, and enterprise AI infrastructure.
+          </p>
+          <div class="footer-telemetry">
+            <span class="live-dot"></span>
+            <span>POD DISPATCH SYSTEM: <strong class="highlight-green">ONLINE & READY</strong></span>
+          </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5 class="footer-nav-title">Capabilities</h5>
+          <ul class="footer-links">
+            <li><a href="#capabilities" onclick="openCapabilityModal('genai')">GenAI & Agent Systems</a></li>
+            <li><a href="#capabilities" onclick="openCapabilityModal('streaming')">Distributed Stream Engines</a></li>
+            <li><a href="#capabilities" onclick="openCapabilityModal('airgap')">Air-Gapped Sovereign Cloud</a></li>
+            <li><a href="#capabilities" onclick="openCapabilityModal('latency')">CUDA & Latency Hardening</a></li>
+            <li><a href="#capabilities" onclick="openCapabilityModal('modernization')">Monolith Modernization</a></li>
+            <li><a href="#capabilities" onclick="openCapabilityModal('edge')">Embedded Edge Robotics</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5 class="footer-nav-title">FDE Protocols</h5>
+          <ul class="footer-links">
+            <li><a href="#why-fde">FDE vs Traditional IT</a></li>
+            <li><a href="#protocol">4-Phase Deployment Model</a></li>
+            <li><a href="#calculator">Pod Velocity Calculator</a></li>
+            <li><a href="#case-studies">Field Battle Records</a></li>
+            <li><a href="#security">Zero-Trust Security & IP</a></li>
+            <li><a href="#faq">Client FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5 class="footer-nav-title">Field Operations</h5>
+          <div class="footer-ops-box">
+            <div class="ops-row">
+              <span class="ops-lbl">Operational Hubs:</span>
+              <span class="ops-val">San Francisco · Washington D.C. · London · Tokyo</span>
+            </div>
+            <div class="ops-row">
+              <span class="ops-lbl">Clearance Levels:</span>
+              <span class="ops-val">DoD Secret / NATO / Commercial Zero-Trust</span>
+            </div>
+            <div class="ops-row">
+              <span class="ops-lbl">Contact Dispatch:</span>
+              <span class="ops-val">dispatch@vortex-fde.io</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          &copy; 2026 VORTEX Forward Deployed Engineering, Inc. All rights reserved. Built for mission-critical enterprise resilience.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="#security">Security Whitepaper</a>
+          <a href="#security">SOC2 Certification</a>
+          <a href="#security">Privacy & IP Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL: POD DISPATCH BOOKING MODAL -->
+  <div class="modal-backdrop" id="dispatch-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-dialog">
+      <button type="button" class="modal-close" onclick="closeDispatchModal()" aria-label="Close dialog">✕</button>
+      
+      <div class="modal-header">
+        <div class="modal-badge">RAPID DISPATCH INTAKE</div>
+        <h3 class="modal-title" id="modal-title">Deploy an FDE Pod</h3>
+        <p class="modal-desc">
+          Fill out your technical requirements below. Our Principal Systems Architect will review your stack and schedule an NDA-protected architecture briefing within 4 hours.
+        </p>
+      </div>
+
+      <form id="dispatch-form" onsubmit="handleDispatchSubmit(event)">
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label" for="inp-fullname">Full Name *</label>
+            <input type="text" class="form-input" id="inp-fullname" required placeholder="e.g. Elena Rostova">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label" for="inp-email">Work Email *</label>
+            <input type="email" class="form-input" id="inp-email" required placeholder="elena@enterprise.com">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label" for="inp-company">Organization / Company *</label>
+            <input type="text" class="form-input" id="inp-company" required placeholder="e.g. Apex Global Systems">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label" for="inp-role">Your Role *</label>
+            <select class="form-select" id="inp-role" required>
+              <option value="" disabled selected>Select your engineering leadership role</option>
+              <option value="cto">CTO / Chief Technology Officer</option>
+              <option value="vp">VP of Engineering</option>
+              <option value="head-ai">Head of AI / Data</option>
+              <option value="architect">Principal / Chief Architect</option>
+              <option value="founder">Founder / CEO</option>
+              <option value="other">Other Technical Leader</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label" for="inp-mission">Mission Domain *</label>
+            <select class="form-select" id="inp-mission" required>
+              <option value="genai">Generative AI & Agentic Orchestration</option>
+              <option value="streaming">Petabyte Distributed Data & Stream Engines</option>
+              <option value="airgap">Air-Gapped Sovereign Cloud & Defense Tech</option>
+              <option value="latency">CUDA Kernel Optimization & Latency Hardening</option>
+              <option value="modern">Surgical Monolith Modernization</option>
+              <option value="edge">Edge Hardware & Robotics Intelligence</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label" for="inp-pod-size">Desired Pod Composition *</label>
+            <select class="form-select" id="inp-pod-size" required>
+              <option value="tactical">Tactical Pod (2 Staff FDEs + 1 Infra Architect)</option>
+              <option value="strike">Strike Force (4 Principal FDEs + 2 Leads)</option>
+              <option value="scout">Scout Specialist (1 Principal FDE Specialist)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inp-details">Brief Problem Statement / Technical Bottleneck *</label>
+          <textarea class="form-textarea" id="inp-details" rows="3" required placeholder="Describe the technical bottleneck, current infrastructure stack, and what success looks like in production..."></textarea>
+        </div>
+
+        <div class="form-group form-checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="inp-nda" checked>
+            <span>Execute Mutual Non-Disclosure Agreement (NDA) prior to technical deep dive</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="inp-clearance">
+            <span>Requires US Citizen / DoD Clearance-eligible personnel</span>
+          </label>
+        </div>
+
+        <div class="form-submit-row">
+          <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-submit-dispatch">
+            <span>Transmit Pod Dispatch Request</span>
+            <svg class="arrow-icon" viewBox="0 0 16 16" fill="currentColor">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+
+      <!-- Simulated Success State Container -->
+      <div class="modal-success" id="modal-success-screen" style="display: none;">
+        <div class="success-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00F2FE" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h3 class="success-title">Dispatch Ticket Generated</h3>
+        <p class="success-msg">
+          Your request has been routed to our Forward Operations Commander. A senior systems architect has been assigned to your case.
+        </p>
+        <div class="ticket-receipt">
+          <div class="receipt-row">
+            <span>TICKET IDENTIFIER:</span>
+            <strong id="receipt-ticket-id">VTX-FDE-9824</strong>
+          </div>
+          <div class="receipt-row">
+            <span>ASSIGNED STATUS:</span>
+            <strong class="highlight-green">ARCHITECT REVIEW IN PROGRESS</strong>
+          </div>
+          <div class="receipt-row">
+            <span>TARGET RESPONSE SLA:</span>
+            <strong>&lt; 4 Hours</strong>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary btn-block" onclick="closeDispatchModal()">
+          Close Window
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CAPABILITY BLUEPRINT DEEP DIVE -->
+  <div class="modal-backdrop" id="capability-modal" aria-hidden="true" role="dialog">
+    <div class="modal-dialog modal-dialog-lg">
+      <button type="button" class="modal-close" onclick="closeCapabilityModal()" aria-label="Close dialog">✕</button>
+      
+      <div class="modal-header">
+        <div class="modal-badge" id="cap-modal-badge">ARCHITECTURE BLUEPRINT</div>
+        <h3 class="modal-title" id="cap-modal-title">System Architecture Specification</h3>
+      </div>
+
+      <div class="cap-modal-body" id="cap-modal-body">
+        <!-- Injected via app.js -->
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeCapabilityModal()">Close</button>
+        <button type="button" class="btn btn-primary" onclick="closeCapabilityModal(); openDispatchModal();">
+          Request This Architectural Pod
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

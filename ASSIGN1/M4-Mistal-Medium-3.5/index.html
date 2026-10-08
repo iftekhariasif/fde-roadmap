@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FDE inc — Forward Deployed Engineering</title>
+    <meta name="description" content="FDE inc embeds elite forward deployed engineers inside your team to ship AI and software solutions against your hardest problems." />
+    <style>
+      :root {
+        --bg: #06090f;
+        --bg-soft: #0b1220;
+        --surface: #0f172a;
+        --line: rgba(148, 163, 184, 0.16);
+        --text: #e6edf7;
+        --muted: #94a3b8;
+        --accent: #38e1c6;
+        --accent-2: #5b8cff;
+        --accent-warm: #ffb454;
+        --radius: 18px;
+        --maxw: 1120px;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+      /* ---------- Nav ---------- */
+      header {
+        position: sticky; top: 0; z-index: 50;
+        backdrop-filter: blur(14px);
+        background: rgba(6, 9, 15, 0.75);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav {
+        display: flex; align-items: center; justify-content: space-between;
+        height: 68px;
+      }
+      .logo {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 800; font-size: 1.15rem; letter-spacing: 0.02em;
+        text-decoration: none; color: var(--text);
+      }
+      .logo-mark {
+        width: 34px; height: 34px; border-radius: 9px;
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+        display: grid; place-items: center;
+        color: #041018; font-size: 0.8rem; font-weight: 900;
+      }
+      .nav-links { display: flex; gap: 28px; list-style: none; }
+      .nav-links a {
+        color: var(--muted); text-decoration: none; font-size: 0.92rem;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover { color: var(--text); }
+      .nav-cta {
+        background: var(--accent); color: #041018; font-weight: 700;
+        padding: 9px 18px; border-radius: 999px; text-decoration: none;
+        font-size: 0.9rem; transition: transform 0.15s, box-shadow 0.15s;
+      }
+      .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(56, 225, 198, 0.35); }
+      .burger {
+        display: none; background: none; border: none; cursor: pointer;
+        width: 40px; height: 40px; border-radius: 8px;
+      }
+      .burger span {
+        display: block; width: 20px; height: 2px; background: var(--text);
+        margin: 4px auto; transition: 0.2s;
+      }
+      .mobile-menu {
+        display: none; flex-direction: column; gap: 4px;
+        padding: 12px 24px 20px; border-top: 1px solid var(--line);
+      }
+      .mobile-menu a { color: var(--muted); text-decoration: none; padding: 10px 0; }
+      .mobile-menu.open { display: flex; }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        position: relative; overflow: hidden;
+        padding: 96px 0 80px;
+        background:
+          radial-gradient(700px 380px at 15% -10%, rgba(91, 140, 255, 0.18), transparent 65%),
+          radial-gradient(600px 340px at 90% 10%, rgba(56, 225, 198, 0.14), transparent 65%);
+      }
+      .badge {
+        display: inline-flex; align-items: center; gap: 8px;
+        border: 1px solid var(--line); border-radius: 999px;
+        padding: 6px 14px; font-size: 0.8rem; color: var(--accent);
+        background: rgba(56, 225, 198, 0.07);
+        margin-bottom: 22px;
+      }
+      .badge .dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: var(--accent); box-shadow: 0 0 10px var(--accent);
+      }
+      h1 {
+        font-size: clamp(2.3rem, 5.4vw, 3.7rem);
+        line-height: 1.12; font-weight: 800; letter-spacing: -0.02em;
+        max-width: 780px;
+      }
+      h1 .grad {
+        background: linear-gradient(92deg, var(--accent), var(--accent-2));
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+      .hero p.lead {
+        margin: 22px 0 34px; max-width: 620px;
+        color: var(--muted); font-size: 1.12rem;
+      }
+      .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+      .btn-primary {
+        background: linear-gradient(92deg, var(--accent), #2bb9ff);
+        color: #041018; font-weight: 700; text-decoration: none;
+        padding: 14px 26px; border-radius: 12px; font-size: 1rem;
+        transition: transform 0.15s, box-shadow 0.15s;
+      }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(56, 225, 198, 0.35); }
+      .btn-ghost {
+        border: 1px solid var(--line); color: var(--text); text-decoration: none;
+        padding: 14px 26px; border-radius: 12px; font-size: 1rem;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .btn-ghost:hover { border-color: var(--accent); background: rgba(56, 225, 198, 0.06); }
+
+      .hero-grid {
+        display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center;
+      }
+      .terminal {
+        background: var(--bg-soft); border: 1px solid var(--line);
+        border-radius: var(--radius); overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        font-family: "Cascadia Code", "Fira Code", "SF Mono", Consolas, monospace;
+        font-size: 0.82rem;
+      }
+      .terminal-bar {
+        display: flex; align-items: center; gap: 8px;
+        padding: 11px 16px; background: rgba(15, 23, 42, 0.9);
+        border-bottom: 1px solid var(--line);
+      }
+      .terminal-bar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+      .terminal-bar i:nth-child(1) { background: #ff5f57; }
+      .terminal-bar i:nth-child(2) { background: #febc2e; }
+      .terminal-bar i:nth-child(3) { background: #28c840; }
+      .terminal-bar span { margin-left: 10px; color: var(--muted); font-size: 0.75rem; }
+      .terminal-body { padding: 20px 18px 26px; }
+      .terminal-body .c { color: var(--accent-2); }
+      .terminal-body .k { color: var(--accent); }
+      .terminal-body .m { color: var(--muted); }
+      .terminal-body .w { color: var(--accent-warm); }
+      .cursor-blink {
+        display: inline-block; width: 8px; height: 15px;
+        background: var(--accent); vertical-align: text-bottom;
+        animation: blink 1s steps(1) infinite;
+      }
+      @keyframes blink { 50% { opacity: 0; } }
+
+      /* ---------- Stats ---------- */
+      .stats {
+        border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+        background: var(--bg-soft);
+      }
+      .stats-grid {
+        display: grid; grid-template-columns: repeat(4, 1fr);
+        padding: 34px 0;
+      }
+      .stat { text-align: center; border-right: 1px solid var(--line); }
+      .stat:last-child { border-right: none; }
+      .stat b { font-size: 1.9rem; font-weight: 800; color: var(--text); display: block; }
+      .stat b em { color: var(--accent); font-style: normal; }
+      .stat span { color: var(--muted); font-size: 0.86rem; }
+
+      /* ---------- Sections ---------- */
+      section { padding: 84px 0; }
+      .sec-head { max-width: 640px; margin-bottom: 48px; }
+      .eyebrow {
+        color: var(--accent); font-weight: 700; font-size: 0.8rem;
+        letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px;
+      }
+      h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 800; letter-spacing: -0.01em; }
+      .sec-head p { color: var(--muted); margin-top: 14px; font-size: 1.05rem; }
+
+      /* Services */
+      .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .card {
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: var(--radius); padding: 28px 26px;
+        transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      }
+      .card:hover {
+        transform: translateY(-4px); border-color: rgba(56, 225, 198, 0.45);
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
+      }
+      .card .icon {
+        width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+        background: rgba(56, 225, 198, 0.1); border: 1px solid rgba(56, 225, 198, 0.25);
+        margin-bottom: 18px; font-size: 1.2rem;
+      }
+      .card h3 { font-size: 1.12rem; margin-bottom: 10px; }
+      .card p { color: var(--muted); font-size: 0.93rem; }
+
+      /* Process */
+      .process { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: step; }
+      .step {
+        position: relative; padding: 26px 22px; border-radius: var(--radius);
+        background: var(--surface); border: 1px solid var(--line);
+      }
+      .step::before {
+        counter-increment: step; content: "0" counter(step);
+        display: inline-block; font-weight: 800; font-size: 0.85rem;
+        color: var(--accent); background: rgba(56, 225, 198, 0.1);
+        border: 1px solid rgba(56, 225, 198, 0.3);
+        padding: 4px 12px; border-radius: 999px; margin-bottom: 16px;
+      }
+      .step h3 { font-size: 1.02rem; margin-bottom: 8px; }
+      .step p { color: var(--muted); font-size: 0.88rem; }
+
+      /* Engagement models */
+      .models { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .model {
+        border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 30px 28px; background: var(--surface);
+        display: flex; flex-direction: column;
+      }
+      .model.featured {
+        border-color: var(--accent);
+        background: linear-gradient(180deg, rgba(56, 225, 198, 0.07), var(--surface) 55%);
+        position: relative;
+      }
+      .model .tag {
+        position: absolute; top: -12px; left: 24px;
+        background: var(--accent); color: #041018; font-size: 0.72rem;
+        font-weight: 800; padding: 4px 12px; border-radius: 999px;
+      }
+      .model h3 { font-size: 1.15rem; margin-bottom: 6px; }
+      .model .price { color: var(--accent); font-weight: 700; font-size: 0.95rem; margin-bottom: 14px; }
+      .model ul { list-style: none; margin: 0 0 22px; flex: 1; }
+      .model li {
+        color: var(--muted); font-size: 0.9rem; padding: 7px 0 7px 26px;
+        position: relative; border-bottom: 1px dashed rgba(148, 163, 184, 0.12);
+      }
+      .model li:last-child { border-bottom: none; }
+      .model li::before {
+        content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+      }
+      .model a {
+        text-align: center; text-decoration: none; font-weight: 700; font-size: 0.9rem;
+        padding: 11px; border-radius: 10px; transition: 0.2s;
+      }
+      .model .btn-solid { background: var(--accent); color: #041018; }
+      .model .btn-line { border: 1px solid var(--line); color: var(--text); }
+      .model .btn-line:hover { border-color: var(--accent); }
+
+      /* Testimonials */
+      .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .quote {
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: var(--radius); padding: 26px;
+      }
+      .quote p { font-size: 0.95rem; color: var(--text); margin-bottom: 18px; }
+      .quote .who { display: flex; align-items: center; gap: 12px; }
+      .quote .avatar {
+        width: 40px; height: 40px; border-radius: 50%; flex: none;
+        display: grid; place-items: center; font-weight: 800; font-size: 0.85rem; color: #041018;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      }
+      .quote .who b { display: block; font-size: 0.9rem; }
+      .quote .who span { color: var(--muted); font-size: 0.8rem; }
+
+      /* Contact / CTA */
+      .contact { background: var(--bg-soft); border-top: 1px solid var(--line); }
+      .contact-wrap {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;
+      }
+      .contact-info li { list-style: none; color: var(--muted); font-size: 0.95rem; padding: 8px 0; }
+      .contact-info li b { color: var(--text); }
+      form {
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: var(--radius); padding: 30px;
+        display: flex; flex-direction: column; gap: 14px;
+      }
+      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      label { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+      input, textarea, select {
+        width: 100%; margin-top: 6px; padding: 12px 14px;
+        background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
+        color: var(--text); font: inherit; font-size: 0.92rem;
+        transition: border-color 0.2s;
+      }
+      input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); }
+      textarea { resize: vertical; min-height: 110px; }
+      .form-note { font-size: 0.78rem; color: var(--muted); }
+      button.submit {
+        background: linear-gradient(92deg, var(--accent), #2bb9ff);
+        color: #041018; font-weight: 800; font-size: 0.98rem;
+        border: none; border-radius: 12px; padding: 14px; cursor: pointer;
+        transition: transform 0.15s, box-shadow 0.15s;
+      }
+      button.submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(56, 225, 198, 0.35); }
+      .form-success {
+        display: none; text-align: center; padding: 30px 10px;
+        color: var(--accent); font-weight: 700;
+      }
+      .form-success.show { display: block; }
+
+      /* Footer */
+      footer { border-top: 1px solid var(--line); padding: 40px 0 46px; }
+      .footer-wrap {
+        display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+      }
+      .footer-links { display: flex; gap: 22px; }
+      .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.86rem; }
+      .footer-links a:hover { color: var(--text); }
+      footer p { color: var(--muted); font-size: 0.82rem; }
+
+      /* Reveal on scroll */
+      .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+      .reveal.visible { opacity: 1; transform: none; }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 900px) {
+        .nav-links, .nav-cta { display: none; }
+        .burger { display: block; }
+        .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+        .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        .stat:nth-child(2) { border-right: none; }
+        .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); padding-bottom: 22px; }
+        .stat:nth-child(n+3) { padding-top: 22px; }
+        .cards, .steps, .models, .quotes { grid-template-columns: 1fr; }
+        .contact-wrap { grid-template-columns: 1fr; }
+        section { padding: 64px 0; }
+      }
+      @media (max-width: 520px) {
+        .form-row { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ======================= NAV ======================= -->
+    <header>
+      <div class="container nav">
+        <a class="logo" href="#top">
+          <span class="logo-mark">FDE</span>
+          <span>FDE inc</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">How we work</a></li>
+          <li><a href="#models">Engagement</a></li>
+          <li><a href="#testimonials">Clients</a></li>
+        </ul>
+        <a class="nav-cta" href="#contact">Book a call</a>
+        <button class="burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu container" id="mobileMenu">
+        <a href="#services">Services</a>
+        <a href="#process">How we work</a>
+        <a href="#models">Engagement</a>
+        <a href="#testimonials">Clients</a>
+        <a href="#contact">Book a call</a>
+      </nav>
+    </header>
+
+    <!-- ======================= HERO ======================= -->
+    <div class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge"><span class="dot"></span> Forward Deployed Engineering, on demand</span>
+          <h1>We ship your hardest<br /><span class="grad">software &amp; AI problems</span><br />— from inside your team.</h1>
+          <p class="lead">
+            FDE inc embeds senior forward deployed engineers directly with your operators,
+            product, and data. No handoffs, no bloated decks — just working systems in production,
+            fast.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#contact">Book a discovery call</a>
+            <a class="btn-ghost" href="#services">Explore services →</a>
+          </div>
+        </div>
+        <div class="terminal reveal">
+          <div class="terminal-bar">
+            <i></i><i></i><i></i><span>fde@client-ops — deploy.log</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="m">$</span> fde connect --client acme --problem "invoice automation"</div>
+            <div class="m">→ scoping with ops team ... 2 days on site</div>
+            <div class="m">→ data audit: 14 sources, 3 broken pipelines</div>
+            <div><span class="k">✓</span> prototype shipped to prod in <span class="w">11 days</span></div>
+            <div class="m">→ manual invoice work: 38 hrs/wk → 2 hrs/wk</div>
+            <div><span class="c">[fde]</span> handover complete. docs + training delivered.</div>
+            <div><span class="m">$</span> <span class="cursor-blink"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================= STATS ======================= -->
+    <div class="stats">
+      <div class="container stats-grid">
+        <div class="stat"><b>120<em>+</em></b><span>Deployments delivered</span></div>
+        <div class="stat"><b>14<em> days</em></b><span>Median time to first prod release</span></div>
+        <div class="stat"><b>92<em>%</em></b><span>Client retention after year one</span></div>
+        <div class="stat"><b>40<em>+</em></b><span>Senior FDEs across 9 time zones</span></div>
+      </div>
+    </div>
+
+    <!-- ======================= SERVICES ======================= -->
+    <section id="services">
+      <div class="container">
+        <div class="sec-head reveal">
+          <div class="eyebrow">What we do</div>
+          <h2>Full-stack deployment, not just consulting</h2>
+          <p>Our engineers own outcomes end-to-end: from the whiteboard to the war room to the pull request that lands in production.</p>
+        </div>
+        <div class="cards">
+          <div class="card reveal">
+            <div class="icon">🤖</div>
+            <h3>AI &amp; LLM Solutions</h3>
+            <p>RAG systems, agents, fine-tuning, and evaluation pipelines — designed around your data, deployed inside your walls or cloud.</p>
+          </div>
+          <div class="card reveal">
+            <div class="icon">⚙️</div>
+            <h3>Workflow Automation</h3>
+            <p>We map the messy real-world process, cut the manual toil, and automate it with durable, observable systems your team can maintain.</p>
+          </div>
+          <div class="card reveal">
+            <div class="icon">🔗</div>
+            <h3>Data &amp; Systems Integration</h3>
+            <p>Untangling legacy silos into clean pipelines and APIs, so every team works from one source of truth.</p>
+          </div>
+          <div class="card reveal">
+            <div class="icon">🧭</div>
+            <h3>Product &amp; Platform Builds</h3>
+            <p>New internal tools and customer-facing products shipped in weeks — with the UX polish your users expect, not "internal tool ugly".</p>
+          </div>
+          <div class="card reveal">
+            <div class="icon">🚀</div>
+            <h3>0→1 Prototyping</h3>
+            <p>Pressure-test the idea before the big budget commitment. We build the thin slice that proves or kills the concept — fast.</p>
+          </div>
+          <div class="card reveal">
+            <div class="icon">🎓</div>
+            <h3>Enablement &amp; Handover</h3>
+            <p>Every engagement ends with docs, training, and clean code. Your team owns the system — no permanent consultant dependency.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PROCESS ======================= -->
+    <section class="process" id="process">
+      <div class="container">
+        <div class="sec-head reveal">
+          <div class="eyebrow">How we work</div>
+          <h2>Embedded. Iterative. Done.</h2>
+          <p>The forward-deployed method: live where the problem lives, ship small, measure everything.</p>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <h3>Dive in</h3>
+            <p>A senior FDE embeds with your team for an intensive discovery — shadowing operators, auditing systems, and finding the real bottleneck.</p>
+          </div>
+          <div class="step reveal">
+            <h3>Blueprint</h3>
+            <p>You get a concrete plan in days, not months: solution architecture, success metrics, and a fixed-scope first milestone.</p>
+          </div>
+          <div class="step reveal">
+            <h3>Ship weekly</h3>
+            <p>We build and deploy in weekly increments against real data. You see working software from week one — no big-bang reveals.</p>
+          </div>
+          <div class="step reveal">
+            <h3>Hand over</h3>
+            <p>Documentation, training, and a maintainable codebase. We stay on call through stabilization, then step back.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= ENGAGEMENT MODELS ======================= -->
+    <section id="models">
+      <div class="container">
+        <div class="sec-head reveal">
+          <div class="eyebrow">Engagement models</div>
+          <h2>One team, three ways to plug in</h2>
+        </div>
+        <div class="models">
+          <div class="model reveal">
+            <h3>Sprint</h3>
+            <div class="price">2–4 weeks · fixed scope</div>
+            <ul>
+              <li>One embedded FDE + remote support pod</li>
+              <li>Discovery, prototype, and go/no-go recommendation</li>
+              <li>Fixed price, fixed timeline</li>
+            </ul>
+            <a class="btn-line" href="#contact">Start a sprint</a>
+          </div>
+          <div class="model featured reveal">
+            <span class="tag">Most popular</span>
+            <h3>Embedded Squad</h3>
+            <div class="price">3–6 months · monthly</div>
+            <ul>
+              <li>2–4 FDEs embedded in your team</li>
+              <li>Full delivery: design → prod → handover</li>
+              <li>Weekly demos, shared Slack, your process</li>
+              <li>Success metrics tied to engagement</li>
+            </ul>
+            <a class="btn-solid" href="#contact">Build with a squad</a>
+          </div>
+          <div class="model reveal">
+            <h3>FDE-on-Demand</h3>
+            <div class="price">Retainer · flexible hours</div>
+            <ul>
+              <li>A named FDE on call for your org</li>
+              <li>Priority response within one business day</li>
+              <li>Ideal post-handover support &amp; iteration</li>
+            </ul>
+            <a class="btn-line" href="#contact">Get a retainer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= TESTIMONIALS ======================= -->
+    <section id="testimonials" class="process" style="border-top: 1px solid var(--line);">
+      <div class="container">
+        <div class="sec-head reveal">
+          <div class="eyebrow">Client outcomes</div>
+          <h2>Teams that stopped planning and started shipping</h2>
+        </div>
+        <div class="quotes">
+          <div class="quote reveal">
+            <p>"Two FDEs did in five weeks what our last vendor quoted six months for. The difference was they sat with the ops team and fixed the actual process."</p>
+            <div class="who">
+              <div class="avatar">SK</div>
+              <div><b>Sarah K.</b><span>COO, logistics platform</span></div>
+            </div>
+          </div>
+          <div class="quote reveal">
+            <p>"The handover was the best part — real docs, real training, and our engineers now run the pipeline themselves. Zero lock-in."</p>
+            <div class="who">
+              <div class="avatar">MR</div>
+              <div><b>Marcus R.</b><span>VP Engineering, fintech</span></div>
+            </div>
+          </div>
+          <div class="quote reveal">
+            <p>"They shipped an LLM support copilot to production in 11 days, then measured it. Deflection hit 34% in the first month. Numbers, not slideware."</p>
+            <div class="who">
+              <div class="avatar">AT</div>
+              <div><b>Amina T.</b><span>Head of CX, e-commerce group</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CONTACT ======================= -->
+    <section class="contact" id="contact">
+      <div class="container contact-wrap">
+        <div class="reveal">
+          <div class="eyebrow">Get started</div>
+          <h2>Bring us your hardest problem.</h2>
+          <p style="color: var(--muted); margin: 16px 0 28px; max-width: 460px;">
+            Tell us what's broken, stuck, or unshipped. In a 30-minute call we'll tell you
+            honestly whether an FDE engagement is the right fit — and what we'd do first.
+          </p>
+          <ul class="contact-info">
+            <li><b>Email</b> — hello@fde-inc.com</li>
+            <li><b>Response time</b> — within one business day</li>
+            <li><b>First milestone</b> — scoped in the first week</li>
+            <li><b>Coverage</b> — remote-first, 9 time zones</li>
+          </ul>
+        </div>
+        <form id="contactForm" class="reveal">
+          <div class="form-row">
+            <div>
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" placeholder="Ada Lovelace" required />
+            </div>
+            <div>
+              <label for="email">Work email</label>
+              <input id="email" name="email" type="email" placeholder="ada@company.com" required />
+            </div>
+          </div>
+          <div>
+            <label for="topic">What do you need?</label>
+            <select id="topic" name="topic">
+              <option>AI / LLM solution</option>
+              <option>Workflow automation</option>
+              <option>Systems integration</option>
+              <option>Product build</option>
+              <option>Not sure yet — help me scope it</option>
+            </select>
+          </div>
+          <div>
+            <label for="msg">Tell us about the problem</label>
+            <textarea id="msg" name="msg" placeholder="What's stuck, who's affected, and what does 'done' look like?"></textarea>
+          </div>
+          <button class="submit" type="submit">Book my discovery call</button>
+          <div class="form-note">No spam, no hard sell. Just a straight answer within one business day.</div>
+          <div class="form-success" id="formSuccess">✓ Thanks! We'll be in touch within one business day.</div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ======================= FOOTER ======================= -->
+    <footer>
+      <div class="container footer-wrap">
+        <a class="logo" href="#top" style="font-size: 1rem;">
+          <span class="logo-mark" style="width: 28px; height: 28px; font-size: 0.62rem;">FDE</span>
+          <span>FDE inc</span>
+        </a>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#process">How we work</a>
+          <a href="#models">Engagement</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <p>© 2026 FDE inc — Forward Deployed Engineering.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu
+      const burger = document.getElementById("burger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      burger.addEventListener("click", () => mobileMenu.classList.toggle("open"));
+      mobileMenu.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => mobileMenu.classList.remove("open"))
+      );
+
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+      // Contact form (demo — no backend)
+      document.getElementById("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const f = e.target;
+        const ok = document.getElementById("formSuccess");
+        ok.classList.add("show");
+        f.querySelector(".submit").disabled = true;
+        setTimeout(() => {
+          f.reset();
+          ok.classList.remove("show");
+          f.querySelector(".submit").disabled = false;
+        }, 4000);
+      });
+    </script>
+  </body>
+</html>
