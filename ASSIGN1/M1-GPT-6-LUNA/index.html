@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  <meta name="description" content="Northstar embeds senior engineers with your team to turn complex technology into real-world outcomes. Forward Deployed Engineering, built around your mission.">
+  <title>Northstar — Forward Deployed Engineering</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f5f3ed;
+      --ink: #17231f;
+      --muted: #68736d;
+      --green: #c7f36b;
+      --green-dark: #1d3327;
+      --line: rgba(23, 35, 31, .14);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(1240px, calc(100% - 64px)); margin-inline: auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #829b61;
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { width: 22px; height: 1px; background: currentColor; content: ""; }
+
+    header {
+      position: relative;
+      z-index: 5;
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      display: flex;
+      height: 82px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-size: 18px; font-weight: 760; letter-spacing: -.045em; }
+    .brand-mark {
+      display: grid;
+      width: 29px;
+      height: 29px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--green-dark);
+    }
+    .brand-mark svg { width: 17px; height: 17px; }
+    .nav-links { display: flex; align-items: center; gap: 35px; }
+    .nav-links a:not(.nav-cta) { color: #58645e; font-size: 13px; transition: color .2s; }
+    .nav-links a:not(.nav-cta):hover { color: var(--ink); }
+    .nav-cta, .button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 19px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--green);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 720;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta { min-height: 40px; }
+    .nav-cta:hover, .button:hover { background: #d7ff88; transform: translateY(-2px); }
+    .arrow { font-size: 17px; line-height: 0; }
+    .menu-toggle { display: none; }
+
+    .hero { padding: 91px 0 75px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: 38px; }
+    h1 {
+      max-width: 670px;
+      margin: 26px 0 22px;
+      font-family: var(--serif);
+      font-size: clamp(55px, 6.5vw, 88px);
+      font-weight: 400;
+      letter-spacing: -.075em;
+      line-height: .99;
+    }
+    h1 em { color: #718c4d; font-weight: 400; }
+    .hero-copy { max-width: 490px; color: var(--muted); font-size: 16px; line-height: 1.75; }
+    .hero-actions { display: flex; align-items: center; gap: 23px; margin-top: 31px; }
+    .text-link { display: inline-flex; align-items: center; gap: 8px; color: #445149; font-size: 13px; font-weight: 680; }
+    .text-link:hover { color: #789344; }
+    .hero-note { display: flex; align-items: center; gap: 11px; margin-top: 42px; color: #758078; font-size: 11px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #88b54e; box-shadow: 0 0 0 4px rgba(136,181,78,.13); }
+
+    .visual {
+      position: relative;
+      min-height: 440px;
+      overflow: hidden;
+      border-radius: 5px;
+      background: #18332a;
+      color: #f4f2e9;
+      isolation: isolate;
+    }
+    .visual::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 67% 39%, rgba(168, 219, 105, .27), transparent 34%),
+        linear-gradient(148deg, transparent 53%, rgba(4, 18, 13, .52) 53.2%),
+        repeating-linear-gradient(0deg, transparent 0 48px, rgba(225, 244, 207, .075) 49px 50px),
+        repeating-linear-gradient(90deg, transparent 0 48px, rgba(225, 244, 207, .075) 49px 50px);
+      content: "";
+    }
+    .visual-top { display: flex; align-items: center; justify-content: space-between; padding: 24px 26px; }
+    .visual-label { color: rgba(244,242,233,.65); font-size: 10px; letter-spacing: .13em; text-transform: uppercase; }
+    .live { display: inline-flex; align-items: center; gap: 7px; color: var(--green); font-size: 10px; }
+    .live::before { width: 6px; height: 6px; border-radius: 50%; background: currentColor; content: ""; }
+    .orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(72%, 330px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(207, 240, 171, .36);
+      border-radius: 50%;
+      transform: translate(-50%, -47%);
+    }
+    .orbit::before, .orbit::after { position: absolute; inset: 12%; border: 1px solid rgba(207,240,171,.2); border-radius: 50%; content: ""; }
+    .orbit::after { inset: 25%; }
+    .orbit-line {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 115%;
+      height: 1px;
+      background: rgba(207, 240, 171, .25);
+      transform: translate(-50%, -50%) rotate(-38deg);
+    }
+    .orbit-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: grid;
+      width: 88px;
+      height: 88px;
+      place-items: center;
+      border: 1px solid rgba(220, 246, 189, .8);
+      border-radius: 50%;
+      background: #244a35;
+      box-shadow: 0 0 50px rgba(199, 243, 107, .25);
+      color: var(--green);
+      transform: translate(-50%, -50%);
+    }
+    .orbit-core svg { width: 36px; height: 36px; }
+    .node { position: absolute; display: grid; width: 39px; height: 39px; place-items: center; border: 1px solid rgba(220,246,189,.5); border-radius: 50%; background: #203c30; color: #d9ebc8; font-size: 11px; }
+    .node.one { top: 5%; left: 45%; }
+    .node.two { top: 47%; right: 1%; }
+    .node.three { bottom: 6%; left: 22%; }
+    .visual-caption {
+      position: absolute;
+      right: 26px;
+      bottom: 24px;
+      left: 26px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      color: rgba(244,242,233,.7);
+      font-size: 11px;
+    }
+    .visual-caption strong { display: block; margin-bottom: 5px; color: #f4f2e9; font-size: 14px; font-weight: 550; }
+    .visual-caption .metric { color: var(--green); font-family: var(--serif); font-size: 28px; }
+
+    .proof { padding: 24px 0 27px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .proof-inner { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+    .proof-label { max-width: 130px; color: #77817b; font-size: 10px; line-height: 1.5; letter-spacing: .11em; text-transform: uppercase; }
+    .proof-names { display: flex; flex: 1; align-items: center; justify-content: space-around; gap: 20px; color: #647069; }
+    .proof-names span { font-size: 15px; font-weight: 700; letter-spacing: -.045em; }
+    .proof-names span:nth-child(2) { font-family: var(--serif); font-size: 19px; font-weight: 500; letter-spacing: -.06em; }
+    .proof-names span:nth-child(3) { font-size: 12px; letter-spacing: .13em; }
+    .proof-names span:nth-child(4) { font-family: var(--serif); font-size: 18px; font-weight: 500; }
+    .proof-names span:nth-child(5) { font-size: 13px; letter-spacing: .09em; }
+
+    section { scroll-margin-top: 30px; }
+    .section-pad { padding: 111px 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 36px; margin-bottom: 51px; }
+    h2 { max-width: 590px; margin: 17px 0 0; font-family: var(--serif); font-size: clamp(39px, 4.5vw, 57px); font-weight: 400; letter-spacing: -.065em; line-height: 1.08; }
+    .section-heading p { max-width: 350px; margin: 0 0 4px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+    .service { min-height: 241px; padding: 29px 28px 26px 0; border-bottom: 1px solid var(--line); }
+    .service + .service { padding-left: 28px; border-left: 1px solid var(--line); }
+    .service-icon { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: #617e42; }
+    .service-icon svg { width: 19px; height: 19px; }
+    h3 { margin: 22px 0 10px; font-size: 16px; font-weight: 670; letter-spacing: -.025em; }
+    .service p { max-width: 310px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+    .approach { background: #e9e9df; }
+    .approach-grid { display: grid; grid-template-columns: .9fr 1.1fr; align-items: start; gap: 90px; }
+    .approach-intro { position: sticky; top: 36px; }
+    .approach-intro p { max-width: 390px; margin: 20px 0 27px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .steps { border-top: 1px solid rgba(23,35,31,.17); }
+    .step { display: grid; grid-template-columns: 46px 1fr; gap: 20px; padding: 27px 0; border-bottom: 1px solid rgba(23,35,31,.17); }
+    .step-num { color: #819765; font-family: var(--serif); font-size: 19px; }
+    .step h3 { margin: 0 0 8px; }
+    .step p { max-width: 455px; margin: 0; color: #657169; font-size: 13px; line-height: 1.75; }
+    .callout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 22px 25px;
+      margin-top: 27px;
+      border-radius: 4px;
+      background: #dbe2ce;
+    }
+    .callout p { margin: 0; color: #354338; font-size: 12px; line-height: 1.6; }
+    .callout strong { display: block; margin-bottom: 3px; font-size: 13px; }
+    .callout-mark { color: #6d8a4b; font-family: var(--serif); font-size: 24px; }
+
+    .difference-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    .difference-copy p { max-width: 450px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .difference-list { border-top: 1px solid var(--line); }
+    .difference-item { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--line); color: #45534a; font-size: 13px; }
+    .difference-item span:last-child { color: #7b9855; font-size: 18px; }
+
+    .contact { padding: 82px 0; background: var(--green-dark); color: #f4f2e9; }
+    .contact-inner { display: flex; align-items: end; justify-content: space-between; gap: 42px; }
+    .contact .eyebrow { color: var(--green); }
+    .contact h2 { max-width: 650px; margin-top: 19px; font-size: clamp(43px, 5vw, 67px); }
+    .contact p { max-width: 390px; margin: 18px 0 0; color: rgba(244,242,233,.68); font-size: 14px; line-height: 1.7; }
+    .contact .button { flex: 0 0 auto; margin-bottom: 5px; }
+    footer { padding: 26px 0; background: #14271f; color: rgba(244,242,233,.55); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 11px; }
+    footer .brand { color: #f4f2e9; font-size: 15px; }
+    footer .brand-mark { width: 24px; height: 24px; }
+    footer .brand-mark svg { width: 14px; height: 14px; }
+    .footer-links { display: flex; gap: 21px; }
+    .footer-links a:hover { color: var(--green); }
+
+    @media (max-width: 850px) {
+      .wrap { width: min(100% - 44px, 700px); }
+      .nav-links { gap: 21px; }
+      .hero { padding-top: 68px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-copy { max-width: 560px; }
+      .visual { min-height: 420px; }
+      .section-pad { padding: 82px 0; }
+      .approach-grid { grid-template-columns: 1fr; gap: 38px; }
+      .approach-intro { position: static; }
+      .difference-grid { gap: 36px; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: calc(100% - 40px); }
+      .nav { height: 70px; }
+      .menu-toggle {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+      }
+      .menu-toggle svg { width: 19px; height: 19px; }
+      .nav-links {
+        position: absolute;
+        top: 69px;
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        padding: 14px 20px 20px;
+        border-bottom: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .nav-links.open { display: flex; flex-direction: column; gap: 0; }
+      .nav-links a:not(.nav-cta) { padding: 13px 0; }
+      .nav-cta { margin-top: 7px; }
+      .hero { padding: 61px 0 53px; }
+      h1 { margin-top: 21px; font-size: clamp(53px, 13vw, 73px); }
+      .hero-copy { font-size: 15px; }
+      .hero-actions { align-items: flex-start; flex-direction: column; gap: 18px; }
+      .hero-note { margin-top: 31px; }
+      .visual { min-height: 355px; }
+      .visual-top { padding: 20px; }
+      .visual-caption { right: 20px; bottom: 18px; left: 20px; }
+      .proof-inner { align-items: flex-start; flex-direction: column; gap: 16px; }
+      .proof-label { max-width: none; }
+      .proof-names { width: 100%; flex-wrap: wrap; justify-content: flex-start; gap: 16px 28px; }
+      .proof-names span { font-size: 13px; }
+      .section-pad { padding: 70px 0; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 18px; margin-bottom: 35px; }
+      .section-heading p { font-size: 13px; }
+      .services { grid-template-columns: 1fr; }
+      .service { min-height: auto; padding: 24px 0; }
+      .service + .service { padding-left: 0; border-left: 0; }
+      .service h3 { margin-top: 16px; }
+      .difference-grid { grid-template-columns: 1fr; gap: 31px; }
+      .contact { padding: 66px 0; }
+      .contact-inner { align-items: flex-start; flex-direction: column; gap: 28px; }
+      .contact .button { margin: 0; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Northstar home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2.8 14.1 9.9 21.2 12l-7.1 2.1L12 21.2l-2.1-7.1L2.8 12l7.1-2.1L12 2.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
+        </span>
+        northstar
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navigation-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="nav-links" id="navigation-links">
+        <a href="#services">What we do</a>
+        <a href="#approach">Our approach</a>
+        <a href="#about">Why Northstar</a>
+        <a class="nav-cta" href="#contact">Talk to our team <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Forward Deployed Engineering</span>
+          <h1>Make your hardest work <em>work.</em></h1>
+          <p class="hero-copy">We put exceptional engineers alongside your team to turn ambitious technology into outcomes that matter—in your environment, with your people, from day one.</p>
+          <div class="hero-actions">
+            <a class="button" href="#contact">Build with us <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#approach">See how we work <span class="arrow" aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-note"><span class="status-dot" aria-hidden="true"></span>Senior engineers. Embedded teams. Measurable impact.</div>
+        </div>
+        <div class="visual" role="img" aria-label="Abstract illustration of connected teams and technology">
+          <div class="visual-top">
+            <span class="visual-label">Mission control / 01</span>
+            <span class="live">In the field</span>
+          </div>
+          <div class="orbit" aria-hidden="true">
+            <span class="orbit-line"></span>
+            <span class="node one">01</span>
+            <span class="node two">02</span>
+            <span class="node three">03</span>
+            <span class="orbit-core">
+              <svg viewBox="0 0 40 40" fill="none"><path d="M20 4 23.8 16.2 36 20l-12.2 3.8L20 36l-3.8-12.2L4 20l12.2-3.8L20 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="20" cy="20" r="3" fill="currentColor"/></svg>
+            </span>
+          </div>
+          <div class="visual-caption">
+            <div><strong>From the frontier to production.</strong>One team, working on what matters.</div>
+            <span class="metric">→</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="proof" aria-label="Teams we work with">
+      <div class="wrap proof-inner">
+        <div class="proof-label">Built for teams<br>shaping what’s next</div>
+        <div class="proof-names" aria-label="Industries">
+          <span>climate tech</span>
+          <span>Health / science</span>
+          <span>FINANCE</span>
+          <span>Public good</span>
+          <span>INDUSTRIAL</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="section-pad" id="services">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">What we do</span>
+            <h2>We go where the problem is.</h2>
+          </div>
+          <p>Some challenges don't fit neatly into a ticket or a roadmap. We embed with your people, understand the real constraints, and build solutions that hold up in the real world.</p>
+        </div>
+        <div class="services">
+          <article class="service">
+            <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v5c0 5 3.4 8 8 9 4.6-1 8-4 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <h3>Unblock the mission</h3>
+            <p>Get senior technical judgment into the room early. We help clarify the problem, map constraints, and find the fastest responsible path forward.</p>
+          </article>
+          <article class="service">
+            <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg></span>
+            <h3>Build for the real world</h3>
+            <p>Design and ship production-ready software, AI systems, and integrations that work with your data, workflows, infrastructure, and users.</p>
+          </article>
+          <article class="service">
+            <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5m0 14h16M7 15l4-4 3 2 5-6"/><path d="M16 7h3v3"/></svg></span>
+            <h3>Make it last</h3>
+            <p>Leave your team stronger than we found it—with shared context, maintainable systems, and the confidence to own what comes next.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad approach" id="approach">
+      <div class="wrap approach-grid">
+        <div class="approach-intro">
+          <span class="eyebrow">Our approach</span>
+          <h2>Close to the work. Focused on the outcome.</h2>
+          <p>Forward deployed means more than working on-site. It means being accountable to the people who use what we build—and staying close until it works.</p>
+          <a class="text-link" href="#contact">Tell us what you’re solving <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <div>
+          <div class="steps">
+            <article class="step">
+              <div class="step-num">01</div>
+              <div><h3>Start with the field</h3><p>We listen to users, operators, and your technical team to understand the problem as it actually exists—not just how it looks on paper.</p></div>
+            </article>
+            <article class="step">
+              <div class="step-num">02</div>
+              <div><h3>Find the right first move</h3><p>We align on a clear, testable outcome and a focused plan. Small feedback loops help us learn quickly without losing sight of the mission.</p></div>
+            </article>
+            <article class="step">
+              <div class="step-num">03</div>
+              <div><h3>Build shoulder to shoulder</h3><p>Our engineers work in your stack and alongside your team, shipping useful increments and sharing context as we go.</p></div>
+            </article>
+            <article class="step">
+              <div class="step-num">04</div>
+              <div><h3>Hand over with confidence</h3><p>We make sure the system is understood, supportable, and ready for your team to take forward. The outcome belongs to you.</p></div>
+            </article>
+          </div>
+          <div class="callout">
+            <p><strong>Small, senior teams by design.</strong>Right-sized expertise, embedded where it can make a difference.</p>
+            <span class="callout-mark" aria-hidden="true">↗</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="about">
+      <div class="wrap difference-grid">
+        <div class="difference-copy">
+          <span class="eyebrow">Why Northstar</span>
+          <h2>Not another handoff. A partner in the work.</h2>
+          <p>We bring the pragmatism to navigate complexity and the engineering depth to deliver. No theater, no black boxes—just thoughtful people working on hard problems with you.</p>
+        </div>
+        <div class="difference-list">
+          <div class="difference-item"><span>Senior people, hands-on from day one</span><span aria-hidden="true">↗</span></div>
+          <div class="difference-item"><span>Built around your constraints, not ours</span><span aria-hidden="true">↗</span></div>
+          <div class="difference-item"><span>Progress measured in outcomes</span><span aria-hidden="true">↗</span></div>
+          <div class="difference-item"><span>Knowledge shared, not kept</span><span aria-hidden="true">↗</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-inner">
+        <div>
+          <span class="eyebrow">Let’s get to work</span>
+          <h2>Have a hard problem? Good.</h2>
+          <p>Tell us what you’re working on. We’ll bring curiosity, technical honesty, and a useful first conversation.</p>
+        </div>
+        <a class="button" href="mailto:hello@northstarfde.com">Start a conversation <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2.8 14.1 9.9 21.2 12l-7.1 2.1L12 21.2l-2.1-7.1L2.8 12l7.1-2.1L12 2.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></span>
+        northstar
+      </a>
+      <span>Engineering for the work that matters.</span>
+      <div class="footer-links"><a href="#services">Services</a><a href="#approach">Approach</a><a href="mailto:hello@northstarfde.com">Email us</a></div>
+      <span>© 2026 Northstar</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navigationLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+      navigationLinks.classList.toggle("open", !isOpen);
+    });
+
+    navigationLinks.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        navigationLinks.classList.remove("open");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nexfield — Elite Forward Deployed Engineers embedded directly into your team. We solve your hardest engineering problems on-site, in real time.">
+    <title>Nexfield | Forward Deployed Engineering Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- ===================== NAVBAR ===================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">⬡</span>
+                <span class="logo-text">Nexfield</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#team">Team</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Get Started</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===================== HERO ===================== -->
+    <header class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="grid-lines"></div>
+            <div class="hero-orb hero-orb--1"></div>
+            <div class="hero-orb hero-orb--2"></div>
+            <div class="hero-orb hero-orb--3"></div>
+            <div class="particle-field" id="particleField"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Forward Deployed Engineering
+            </div>
+            <h1 class="hero-title">
+                Elite Engineers.<br>
+                <span class="hero-title--gradient">Embedded in Your Team.</span>
+            </h1>
+            <p class="hero-subtitle">
+                We deploy world-class engineers directly into your organization to solve your
+                hardest technical challenges — on-site, in real time, with full context.
+            </p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn--primary">
+                    Deploy an Engineer
+                    <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="#process" class="btn btn--ghost">
+                    How It Works
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat__number" data-count="150">0</span><span class="hero-stat__suffix">+</span>
+                    <span class="hero-stat__label">Engineers Deployed</span>
+                </div>
+                <div class="hero-stat__divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat__number" data-count="98">0</span><span class="hero-stat__suffix">%</span>
+                    <span class="hero-stat__label">Client Retention</span>
+                </div>
+                <div class="hero-stat__divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat__number" data-count="40">0</span><span class="hero-stat__suffix">+</span>
+                    <span class="hero-stat__label">Industries Served</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-indicator__mouse">
+                <div class="scroll-indicator__dot"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Who We Are</span>
+                <h2 class="section-title">Engineering That<br><span class="text-gradient">Lives Where You Do</span></h2>
+                <p class="section-subtitle">
+                    Traditional consulting keeps you at arm's length. We embed our engineers in your codebase,
+                    your standups, and your Slack channels — becoming a seamless extension of your team.
+                </p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card" data-animate>
+                    <div class="about-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Fully Embedded</h3>
+                    <p>Our FDEs join your daily standups, pair program with your developers, and deeply understand your technical stack and business context.</p>
+                </div>
+                <div class="about-card" data-animate>
+                    <div class="about-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>Deep Expertise</h3>
+                    <p>From distributed systems to ML pipelines, our engineers bring top-tier domain expertise from leading tech companies and research labs.</p>
+                </div>
+                <div class="about-card" data-animate>
+                    <div class="about-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <h3>Rapid Impact</h3>
+                    <p>No six-month ramp-up. Our FDEs start delivering meaningful contributions within the first two weeks of deployment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What We Do</span>
+                <h2 class="section-title">End-to-End<br><span class="text-gradient">Engineering Solutions</span></h2>
+                <p class="section-subtitle">
+                    Our Forward Deployed Engineers adapt to your most critical needs — from building new platforms to rescuing critical projects.
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-animate>
+                    <div class="service-card__number">01</div>
+                    <div class="service-card__content">
+                        <h3>Platform Engineering</h3>
+                        <p>Design and build scalable infrastructure, CI/CD pipelines, and developer platforms that accelerate your entire engineering org.</p>
+                        <ul class="service-card__tags">
+                            <li>Kubernetes</li>
+                            <li>Terraform</li>
+                            <li>AWS / GCP</li>
+                        </ul>
+                    </div>
+                    <div class="service-card__glow"></div>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-card__number">02</div>
+                    <div class="service-card__content">
+                        <h3>Data & ML Systems</h3>
+                        <p>Build production-grade data pipelines, ML model serving infrastructure, and real-time analytics platforms from the ground up.</p>
+                        <ul class="service-card__tags">
+                            <li>Spark</li>
+                            <li>PyTorch</li>
+                            <li>Kafka</li>
+                        </ul>
+                    </div>
+                    <div class="service-card__glow"></div>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-card__number">03</div>
+                    <div class="service-card__content">
+                        <h3>Product Development</h3>
+                        <p>Ship customer-facing features faster. Our FDEs integrate with product teams to build, iterate, and launch at startup speed.</p>
+                        <ul class="service-card__tags">
+                            <li>React</li>
+                            <li>Node.js</li>
+                            <li>Go</li>
+                        </ul>
+                    </div>
+                    <div class="service-card__glow"></div>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-card__number">04</div>
+                    <div class="service-card__content">
+                        <h3>System Rescue & Modernization</h3>
+                        <p>Legacy systems holding you back? We stabilize, re-architect, and modernize critical infrastructure without disrupting operations.</p>
+                        <ul class="service-card__tags">
+                            <li>Migration</li>
+                            <li>Refactoring</li>
+                            <li>Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="service-card__glow"></div>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-card__number">05</div>
+                    <div class="service-card__content">
+                        <h3>Security Engineering</h3>
+                        <p>Embed security into every layer — from threat modeling and pen testing to building zero-trust architectures and compliance frameworks.</p>
+                        <ul class="service-card__tags">
+                            <li>Zero Trust</li>
+                            <li>SOC2</li>
+                            <li>AppSec</li>
+                        </ul>
+                    </div>
+                    <div class="service-card__glow"></div>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-card__number">06</div>
+                    <div class="service-card__content">
+                        <h3>Technical Leadership</h3>
+                        <p>Need an interim CTO or Staff Engineer? Our senior FDEs provide architectural guidance, mentorship, and strategic technical direction.</p>
+                        <ul class="service-card__tags">
+                            <li>Architecture</li>
+                            <li>Mentorship</li>
+                            <li>Strategy</li>
+                        </ul>
+                    </div>
+                    <div class="service-card__glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PROCESS ===================== -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">How It Works</span>
+                <h2 class="section-title">From Handshake to<br><span class="text-gradient">First Commit in Days</span></h2>
+            </div>
+            <div class="process-timeline">
+                <div class="process-line"></div>
+                <div class="process-step" data-animate>
+                    <div class="process-step__marker">
+                        <span>1</span>
+                    </div>
+                    <div class="process-step__content">
+                        <h3>Discovery Call</h3>
+                        <p>We deep-dive into your tech stack, team structure, and the challenge you need solved. No sales pitch — just technical alignment.</p>
+                    </div>
+                </div>
+                <div class="process-step" data-animate>
+                    <div class="process-step__marker">
+                        <span>2</span>
+                    </div>
+                    <div class="process-step__content">
+                        <h3>Engineer Matching</h3>
+                        <p>We hand-pick the FDE whose skills, experience, and personality are the best fit for your team and problem domain.</p>
+                    </div>
+                </div>
+                <div class="process-step" data-animate>
+                    <div class="process-step__marker">
+                        <span>3</span>
+                    </div>
+                    <div class="process-step__content">
+                        <h3>Rapid Onboarding</h3>
+                        <p>Your FDE gets access to repos, joins Slack, attends standups, and starts contributing code — typically within the first week.</p>
+                    </div>
+                </div>
+                <div class="process-step" data-animate>
+                    <div class="process-step__marker">
+                        <span>4</span>
+                    </div>
+                    <div class="process-step__content">
+                        <h3>Continuous Delivery</h3>
+                        <p>Your FDE ships features, reviews PRs, mentors juniors, and continuously transfers knowledge to your permanent team.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== RESULTS ===================== -->
+    <section class="results" id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Proven Impact</span>
+                <h2 class="section-title">Numbers That<br><span class="text-gradient">Speak for Themselves</span></h2>
+            </div>
+            <div class="results-grid">
+                <div class="result-card" data-animate>
+                    <div class="result-card__value"><span data-count="3">0</span>x</div>
+                    <div class="result-card__label">Average velocity improvement within 90 days</div>
+                    <div class="result-card__bar"><div class="result-card__fill" style="--fill-width: 90%"></div></div>
+                </div>
+                <div class="result-card" data-animate>
+                    <div class="result-card__value"><span data-count="60">0</span>%</div>
+                    <div class="result-card__label">Reduction in production incidents on average</div>
+                    <div class="result-card__bar"><div class="result-card__fill" style="--fill-width: 75%"></div></div>
+                </div>
+                <div class="result-card" data-animate>
+                    <div class="result-card__value"><span data-count="14">0</span> days</div>
+                    <div class="result-card__label">Average time to first meaningful contribution</div>
+                    <div class="result-card__bar"><div class="result-card__fill" style="--fill-width: 65%"></div></div>
+                </div>
+                <div class="result-card" data-animate>
+                    <div class="result-card__value">$<span data-count="2">0</span>M+</div>
+                    <div class="result-card__label">Engineering cost saved per client annually</div>
+                    <div class="result-card__bar"><div class="result-card__fill" style="--fill-width: 85%"></div></div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="testimonials">
+                <div class="testimonial-card" data-animate>
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <blockquote>"Nexfield's FDE became indistinguishable from our best internal engineers within two weeks. They re-architected our data pipeline and cut processing time by 80%."</blockquote>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar">SK</div>
+                        <div>
+                            <strong>Sarah Kim</strong>
+                            <span>VP Engineering, DataSync</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-animate>
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <blockquote>"We were drowning in tech debt. Their engineer didn't just fix things — they taught our team how to build better systems. The knowledge transfer was invaluable."</blockquote>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar">MR</div>
+                        <div>
+                            <strong>Marcus Rivera</strong>
+                            <span>CTO, HealthBridge</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== TEAM ===================== -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Engineers</span>
+                <h2 class="section-title">Built by People From<br><span class="text-gradient">The Best in Tech</span></h2>
+                <p class="section-subtitle">
+                    Our FDEs come from the most demanding engineering environments in the world.
+                </p>
+            </div>
+            <div class="logo-cloud">
+                <div class="logo-cloud__item">Google</div>
+                <div class="logo-cloud__item">Meta</div>
+                <div class="logo-cloud__item">Palantir</div>
+                <div class="logo-cloud__item">Stripe</div>
+                <div class="logo-cloud__item">Databricks</div>
+                <div class="logo-cloud__item">Cloudflare</div>
+                <div class="logo-cloud__item">Figma</div>
+                <div class="logo-cloud__item">Vercel</div>
+            </div>
+            <div class="team-features">
+                <div class="team-feature" data-animate>
+                    <div class="team-feature__icon">🎓</div>
+                    <h4>Top 1% Talent</h4>
+                    <p>Rigorous 5-stage vetting — only 1 in 100 applicants makes the cut.</p>
+                </div>
+                <div class="team-feature" data-animate>
+                    <div class="team-feature__icon">🌍</div>
+                    <h4>Global Reach</h4>
+                    <p>Engineers in 12 timezones, ready to deploy on-site or remotely.</p>
+                </div>
+                <div class="team-feature" data-animate>
+                    <div class="team-feature__icon">🔄</div>
+                    <h4>Flex Engagements</h4>
+                    <p>From 3-month sprints to multi-year partnerships. Scale up or down freely.</p>
+                </div>
+                <div class="team-feature" data-animate>
+                    <div class="team-feature__icon">📈</div>
+                    <h4>Knowledge Transfer</h4>
+                    <p>Every FDE is trained to uplift your team, not create dependency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CTA / CONTACT ===================== -->
+    <section class="cta" id="contact">
+        <div class="cta-bg">
+            <div class="cta-orb cta-orb--1"></div>
+            <div class="cta-orb cta-orb--2"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Deploy<br><span class="text-gradient">Your Next Engineer?</span></h2>
+                <p class="cta-subtitle">Tell us about your challenge. We'll match you with an FDE who's built exactly what you need.</p>
+                <form class="cta-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Work Email</label>
+                            <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" placeholder="Acme Inc.">
+                        </div>
+                        <div class="form-group">
+                            <label for="timeline">Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="" disabled selected>Select timeline</option>
+                                <option>ASAP — We need help now</option>
+                                <option>1-2 weeks</option>
+                                <option>1 month</option>
+                                <option>Just exploring</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-group--full">
+                        <label for="message">Tell us about your challenge</label>
+                        <textarea id="message" name="message" rows="4" placeholder="We need an engineer who can help us migrate from monolith to microservices..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--large" id="submitBtn">
+                        Request an FDE
+                        <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <span class="logo-icon">⬡</span>
+                        <span class="logo-text">Nexfield</span>
+                    </a>
+                    <p>Elite Forward Deployed Engineers, embedded where it matters most.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="#about">About</a>
+                        <a href="#services">Services</a>
+                        <a href="#team">Careers</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Resources</h4>
+                        <a href="#">Blog</a>
+                        <a href="#">Case Studies</a>
+                        <a href="#">Documentation</a>
+                        <a href="#">Open Source</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Twitter / X</a>
+                        <a href="#">GitHub</a>
+                        <a href="#">Discord</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nexfield. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
